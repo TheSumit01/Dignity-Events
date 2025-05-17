@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Dignity Event</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #000000;
+            background-color: #fffff0;
+            cursor: default;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <style>
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 20px;
+            background-color: rgba(255, 255, 240, 0.98);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid #222222;
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 640px) {
+            .navbar {
+                padding: 20px 40px;
+                justify-content: space-between;
+            }
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 240, 0.98);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+        }
+        .navbar-section {
+            display: none;
+            align-items: center;
+            gap: 30px;
+            flex: 1;
+        }
+
+        .navbar-section:first-of-type {
+            justify-content: flex-end;
+        }
+
+        .navbar-section:last-of-type {
+            justify-content: flex-start;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-section {
+                display: flex;
+            }
+        }
+
+        .logo-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            padding: 0;
+            z-index: 997;
+        }
+
+        @media (min-width: 768px) {
+            .logo-container {
+                position: static;
+                transform: none;
+                padding: 0 20px;
+            }
+        }
+
+        .navbar-section {
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .logo-container img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s;
+        }
+
+        @media (min-width: 640px) {
+            .logo-container img {
+                height: 48px;
+            }
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1000;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @media (min-width: 768px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(255, 255, 240, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transition: left 0.3s ease;
+            z-index: 998;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu a {
+            font-size: 1.25rem;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .mobile-menu a:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+            color: #000;
+            font-size: 1.5rem;
+            display: none;
+        }
+
+        .mobile-menu.active .close-menu {
+            display: block;
+        }
+    </style>
+
+    <nav class="navbar">
+        <button class="menu-toggle md:hidden" aria-label="Toggle menu">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+
+        <div class="navbar-section">
+            <a href="home.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Home</a>
+            <a href="about.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">About</a>
+            <a href="services.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Services</a>
+        </div>
+
+        <div class="logo-container">
+            <a href="home.html">
+                <img src="logo.png" alt="Dignity Events Logo">
+            </a>
+        </div>
+
+        <div class="navbar-section">
+            <a href="Portfolio.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Portfolio</a>
+            <a href="home.html#testimonials" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Testimonials</a>
+            <a href="home.html#contact" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Contact</a>
+        </div>
+
+        <div class="mobile-menu">
+            <button class="close-menu" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="home.html" class="text-black font-bold">Home</a>
+            <a href="about.html" class="text-black font-bold">About</a>
+            <a href="services.html" class="text-black font-bold">Services</a>
+            <a href="Portfolio.html" class="text-black font-bold">Portfolio</a>
+            <a href="home.html#testimonials" class="text-black font-bold">Testimonials</a>
+            <a href="home.html#contact" class="text-black font-bold">Contact</a>
+        </div>
+    </nav>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const closeMenu = document.querySelector('.close-menu');
+        const navLinks = document.querySelectorAll('.mobile-menu a');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', toggleMenu);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+
+    <!-- Services Header Section -->
+    <section class="pt-32 pb-16 px-6 md:px-12 bg-[#fffff0] services-header">
+        <div class="max-w-6xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 text-black reveal">Our Services</h1>
+            <div class="w-24 h-1 bg-black mx-auto mb-8 reveal divider"></div>
+            <p class="text-lg text-black/70 max-w-3xl mx-auto reveal">Discover our comprehensive range of event management services designed to make your special occasions truly memorable.</p>
+        </div>
+    </section>
+
+<!-- Detailed Services Section -->
+<section class="py-16 px-6 md:px-12 bg-white">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-12 bg-[#fffff0]">
+                <!-- Corporate & Brand Events -->
+                <div class="bg-white border-2 border-black backdrop-blur-md rounded-xl p-8 service-card reveal">
+                    <div class="text-black mb-6">
+                        <i class="fas fa-briefcase text-5xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-4 text-black">Corporate & Brand Events</h3>
+                    <p class="text-black/70 mb-6">Professional event management for corporate gatherings, brand activations, and business functions.</p>
+                    <div class="space-y-4">
+                        <ul class="text-black/70 space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-black mt-1 mr-3"></i>
+                                <span>Conferences  Annual </span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-black mt-1 mr-3"></i>
+                                <span>Corporate Events </span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-black mt-1 mr-3"></i>
+                                <span>Product Launches</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-black mt-1 mr-3"></i>
+                                <span>Award Ceremonies</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-black mt-1 mr-3"></i>
+                                <span>Press & Media Events</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+        <!-- Wedding & Social Events -->
+        <div class="bg-white border-2 border-black backdrop-blur-md rounded-xl p-8 service-card reveal">
+            <div class="text-black mb-6">
+                <i class="fas fa-ring text-5xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-black">Wedding & Social Events</h3>
+            <p class="text-black/70 mb-6">Comprehensive wedding planning services for every aspect of your special celebration.</p>
+            <div class="space-y-4">
+                <ul class="text-black/70 space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Destination Wedding</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Pre-wedding, Post-wedding</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Bride Groom Entry</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Reception</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Decor & Setup -->
+        <div class="bg-white border-2 border-black backdrop-blur-md rounded-xl p-8 service-card reveal">
+            <div class="text-black mb-6">
+                <i class="fas fa-paint-brush text-5xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-black">Decor & Setup</h3>
+            <p class="text-black/70 mb-6">Transform your venue with our elegant and customized decoration services.</p>
+            <div class="space-y-4">
+                <ul class="text-black/70 space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Theme Decor</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Floral Decor</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Lighting Stage Setup</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Mandap Setup</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Entertainment & Hospitality -->
+        <div class="bg-white border-2 border-black backdrop-blur-md rounded-xl p-8 service-card reveal">
+            <div class="text-black mb-6">
+                <i class="fas fa-theater-masks text-5xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-black">Entertainment & Hospitality</h3>
+            <p class="text-black/70 mb-6">Keep your guests entertained with our diverse range of entertainment options.</p>
+            <div class="space-y-4">
+                <ul class="text-black/70 space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>DJ Sound</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Anchor/Host</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Mimicry Artist Mascot</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Bubble Show</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Magic Show</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Catering -->
+        <div class="bg-white border-2 border-black backdrop-blur-md rounded-xl p-8 service-card reveal">
+            <div class="text-black mb-6">
+                <i class="fas fa-utensils text-5xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-black">Catering</h3>
+            <p class="text-black/70 mb-6">Delight your guests with exquisite culinary experiences and professional service.</p>
+            <div class="space-y-4">
+                <ul class="text-black/70 space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Multi Cuisine Delights</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Live Counters</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Buffet Setup</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Mocktails Hi-Tea</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Photography & Media -->
+        <div class="bg-white border-2 border-black backdrop-blur-md rounded-xl p-8 service-card reveal">
+            <div class="text-black mb-6">
+                <i class="fas fa-camera text-5xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-black">Photography & Media</h3>
+            <p class="text-black/70 mb-6">Capture every precious moment with our professional photography and videography services.</p>
+            <div class="space-y-4">
+                <ul class="text-black/70 space-y-3">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Photography</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Videography</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Drone Shoot</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Pre Wedding Shoot</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+    <style>
+        .service-card {
+            background-color: #ffffff !important;
+            border-color: #000000 !important;
+        }
+        .service-card i {
+            color: #000000 !important;
+        }
+        .service-card h3, .service-card h4 {
+            color: #000000 !important;
+        }
+        .service-card p, .service-card span {
+            color: #000000 !important;
+            opacity: 0.7;
+        }
+        .service-card i.fa-check {
+            color: #000000 !important;
+        }
+    </style>
+
+    <style>
+        /* Slideshow Styles */
+        .slideshow-wrapper {
+            position: relative;
+            width: 100%;
+            height: 256px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .slideshow-container {
+            display: flex;
+            gap: 1rem;
+            position: absolute;
+            width: max-content;
+        }
+
+        .direction-ltr {
+            animation: slideLTR 60s linear infinite;
+            left: 0;
+        }
+
+        .direction-rtl {
+            animation: slideRTL 60s linear infinite;
+            right: 0;
+        }
+
+        @keyframes slideLTR {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        @keyframes slideRTL {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(50%); }
+        }
+
+        .slideshow-container img {
+            height: 256px;
+            width: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .slideshow-container img:hover {
+            transform: scale(1.05);
+        }
+        </style>
+        
+        <!-- Continuous Slideshows Section -->
+        <section class="py-16 overflow-hidden bg-white">
+            <!-- First Row - Left to Right -->
+            <div class="slideshow-wrapper mb-8">
+                <div class="slideshow-container direction-ltr">
+                    <img src="images/slideshow1/slide1.jpeg" alt="Slideshow 1">
+                    <img src="images/slideshow1/slide2.jpeg" alt="Slideshow 1">
+                    <img src="images/slideshow1/slide3.jpeg" alt="Slideshow 1">
+                    <img src="images/slideshow1/slide4.jpeg" alt="Slideshow 1">
+                    <img src="images/slideshow1/slide5.jpeg" alt="Slideshow 1">
+                    <!-- Duplicate set for seamless loop -->
+                    <img src="images/slideshow1/slide1.jpeg" alt="Slideshow 1">
+                    <img src="images/slideshow1/slide2.jpeg" alt="Slideshow 1">
+                    <img src="images/slideshow1/slide3.jpeg" alt="Slideshow 1">
+                    <img src="images/slideshow1/slide4.jpeg" alt="Slideshow 1">
+                    <img src="images/slideshow1/slide5.jpeg" alt="Slideshow 1">
+                </div>
+            </div>
+        
+            <!-- Second Row - Right to Left -->
+            <div class="slideshow-wrapper mb-8">
+                <div class="slideshow-container direction-rtl">
+                    <img src="images/slideshow2/slide1.jpeg" alt="Slideshow 2">
+                    <img src="images/slideshow2/slide2.jpeg" alt="Slideshow 2">
+                    <img src="images/slideshow2/slide3.jpeg" alt="Slideshow 2">
+                    <img src="images/slideshow2/slide4.jpeg" alt="Slideshow 2">
+                    <img src="images/slideshow2/slide5.jpeg" alt="Slideshow 2">
+                    <!-- Duplicate set for seamless loop -->
+                    <img src="images/slideshow2/slide1.jpeg" alt="Slideshow 2">
+                    <img src="images/slideshow2/slide2.jpeg" alt="Slideshow 2">
+                    <img src="images/slideshow2/slide3.jpeg" alt="Slideshow 2">
+                    <img src="images/slideshow2/slide4.jpeg" alt="Slideshow 2">
+                    <img src="images/slideshow2/slide5.jpeg" alt="Slideshow 2">
+                </div>
+            </div>
+        
+            <!-- Third Row - Left to Right -->
+            <div class="slideshow-wrapper">
+                <div class="slideshow-container direction-ltr">
+                    <img src="images/slideshow3/slide1.jpeg" alt="Slideshow 3">
+                    <img src="images/slideshow3/slide2.jpeg" alt="Slideshow 3">
+                    <img src="images/slideshow3/slide3.jpeg" alt="Slideshow 3">
+                    <img src="images/slideshow3/slide4.jpeg" alt="Slideshow 3">
+                    <img src="images/slideshow3/slide5.jpeg" alt="Slideshow 3">
+                    <!-- Duplicate set for seamless loop -->
+                    <img src="images/slideshow3/slide1.jpeg" alt="Slideshow 3">
+                    <img src="images/slideshow3/slide2.jpeg" alt="Slideshow 3">
+                    <img src="images/slideshow3/slide3.jpeg" alt="Slideshow 3">
+                    <img src="images/slideshow3/slide4.jpeg" alt="Slideshow 3">
+                    <img src="images/slideshow3/slide5.jpeg" alt="Slideshow 3">
+                </div>
+            </div>
+        </section>
+
+    <footer class="bg-[#fffff0] py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-12">
+            <!-- Company Info -->
+            <div class="reveal">
+                <h3 class="text-2xl font-bold text-black mb-4">Dignity Event</h3>
+                <p class="text-black/70 mb-4">Creating extraordinary experiences that leave lasting impressions.</p>
+                <div class="flex space-x-4">
+                    <a href="https://www.facebook.com/people/Dignityeventmanagement/61575120662119/" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@dignityeventmanagement" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.instagram.com/_dignityevents_/?igsh=N3d1M24ybXk2aWF2&utm_source=qr#" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/dignity-event-management-b26993312" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send/?phone=917304457622&text&type=phone_number&app_absent=0" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="reveal">
+                <h4 class="text-xl font-semibold text-black mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="home.html" class="text-black/70 hover:text-black transition">Home</a></li>
+                    <li><a href="about.html" class="text-black/70 hover:text-black transition">About Us</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Services</a></li>
+                    <li><a href="portfolio.html" class="text-black/70 hover:text-black transition">Portfolio</a></li>
+                    <li><a href="#testimonials" class="text-black/70 hover:text-black transition">Testimonials</a></li>
+                </ul>
+            </div>
+            
+            <!-- Services -->
+            <div class="reveal">
+                <h4 class="text-xl font-semibold text-black mb-4">Our Services</h4>
+                <ul class="space-y-2">
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Wedding & Social Events</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Decor & Setup</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Entertainment & Hospitality</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Catering</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Photography & Media</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="reveal">
+                <h4 class="text-xl font-semibold text-black mb-4">Contact Us</h4>
+                <ul class="space-y-2">
+                    <li class="text-black/70 flex items-center"><i class="fas fa-map-marker-alt text-black mr-2"></i>Mumbai, India</li>
+                    <li class="text-black/70 flex items-center"><i class="fas fa-phone text-black mr-2"></i>+91 9082557453</li>
+                    <li class="text-black/70 flex items-center"><i class="fas fa-envelope text-black mr-2"></i>dignityeventmanagement18@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="max-w-6xl mx-auto mt-12 pt-8 border-t border-[#b75004]/20">
+            <p class="text-center text-[#314b7e]">&copy; 2024 Dignity Event. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        // Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+    </script>
+</body>
+</html>
+
+<style>
+.reveal {
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.reveal-delay-1 { transition-delay: 0.2s; }
+.reveal-delay-2 { transition-delay: 0.4s; }
+.reveal-delay-3 { transition-delay: 0.6s; }
+
+.service-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+}
+
+.service-card:hover::before {
+    transform: translateX(100%);
+}
+
+.service-card:hover {
+    transform: translateY(-10px) rotateX(5deg);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.service-card i {
+    transition: transform 0.5s ease;
+}
+
+.service-card:hover i {
+    transform: scale(1.2) rotate(360deg);
+}
+
+.service-card h3 {
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover h3 {
+    transform: scale(1.05);
+}
+
+@keyframes checkmark {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.service-card .fa-check {
+    animation: checkmark 0.5s ease forwards;
+    animation-play-state: paused;
+}
+
+.service-card:hover .fa-check {
+    animation-play-state: running;
+}
+
+.service-card ul li {
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover ul li {
+    transform: translateX(10px);
+    transition-delay: calc(0.1s * var(--li-index));
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Add index to list items for staggered animation
+    document.querySelectorAll('.service-card ul').forEach(ul => {
+        ul.querySelectorAll('li').forEach((li, index) => {
+            li.style.setProperty('--li-index', index);
+        });
+    });
+
+    // Reveal animation
+    const reveal = () => {
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach((el, i) => {
+            const windowHeight = window.innerHeight;
+            const elementTop = el.getBoundingClientRect().top;
+            const elementVisible = 150;
+
+            if (elementTop < windowHeight - elementVisible) {
+                el.classList.add('active');
+                // Add delay class based on position
+                el.classList.add(`reveal-delay-${(i % 3) + 1}`);
+            }
+        });
+    };
+
+    window.addEventListener('scroll', reveal);
+    reveal();
+});
+</script>
+
+<style>
+.navbar {
+    animation: fadeInDown 0.8s ease-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.navbar a {
+    position: relative;
+    overflow: hidden;
+}
+
+.navbar a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #000;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+}
+
+.navbar a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.logo-container img {
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.services-header {
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.services-header h1 {
+    animation: slideInLeft 1s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.services-header .divider {
+    animation: expandWidth 1s ease-out 0.5s forwards;
+    width: 0;
+}
+
+@keyframes expandWidth {
+    from { width: 0; }
+    to { width: 6rem; }
+}
+
+.services-header p {
+    animation: slideInRight 1s ease-out 0.3s both;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+</style>
+</html>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Add index to list items for staggered animation
+    document.querySelectorAll('.service-card ul').forEach(ul => {
+        ul.querySelectorAll('li').forEach((li, index) => {
+            li.style.setProperty('--li-index', index);
+        });
+    });
+
+    // Reveal animation
+    const reveal = () => {
+        const reveals = document.querySelectorAll('.reveal');
+        reveals.forEach((el, i) => {
+            const windowHeight = window.innerHeight;
+            const elementTop = el.getBoundingClientRect().top;
+            const elementVisible = 150;
+
+            if (elementTop < windowHeight - elementVisible) {
+                el.classList.add('active');
+                // Add delay class based on position
+                el.classList.add(`reveal-delay-${(i % 3) + 1}`);
+            }
+        });
+    };
+
+    window.addEventListener('scroll', reveal);
+    reveal();
+});
+</script>

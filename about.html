@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Dignity Event</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+
+            font-family: 'Roboto', sans-serif;
+            color: #000000;
+            background-color: #FFFFE3;
+            cursor: default;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: #000000;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px) scale(0.95);
+            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .reveal-delay-1 { transition-delay: 0.2s; }
+        .reveal-delay-2 { transition-delay: 0.4s; }
+        .reveal-delay-3 { transition-delay: 0.6s; }
+
+        .number-counter {
+            display: inline-block;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .stat-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: #ffffff;
+            border: 2px solid #000000;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-circle:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body>
+    <style>
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 20px;
+            background-color: rgba(255, 255, 240, 0.98);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid #222222;
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 640px) {
+            .navbar {
+                padding: 20px 40px;
+                justify-content: space-between;
+            }
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 240, 0.98);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+        }
+        .navbar-section {
+            display: none;
+            align-items: center;
+            gap: 30px;
+            flex: 1;
+        }
+
+        .navbar-section:first-of-type {
+            justify-content: flex-end;
+        }
+
+        .navbar-section:last-of-type {
+            justify-content: flex-start;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-section {
+                display: flex;
+            }
+        }
+
+        .logo-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            padding: 0;
+            z-index: 997;
+        }
+
+        @media (min-width: 768px) {
+            .logo-container {
+                position: static;
+                transform: none;
+                padding: 0 20px;
+            }
+        }
+
+        .navbar-section {
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .logo-container img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s;
+        }
+
+        @media (min-width: 640px) {
+            .logo-container img {
+                height: 48px;
+            }
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1000;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @media (min-width: 768px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(255, 255, 240, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transition: left 0.3s ease;
+            z-index: 998;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu a {
+            font-size: 1.25rem;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .mobile-menu a:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+            color: #000;
+            font-size: 1.5rem;
+            display: none;
+        }
+
+        .mobile-menu.active .close-menu {
+            display: block;
+        }
+    </style>
+
+    <nav class="navbar">
+        <button class="menu-toggle md:hidden" aria-label="Toggle menu">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+
+        <div class="navbar-section">
+            <a href="home.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Home</a>
+            <a href="about.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">About</a>
+            <a href="services.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Services</a>
+        </div>
+
+        <div class="logo-container">
+            <a href="home.html">
+                <img src="logo.png" alt="Dignity Events Logo">
+            </a>
+        </div>
+
+        <div class="navbar-section">
+            <a href="Portfolio.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Portfolio</a>
+            <a href="home.html#testimonials" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Testimonials</a>
+            <a href="home.html#contact" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Contact</a>
+        </div>
+
+        <div class="mobile-menu">
+            <button class="close-menu" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="home.html" class="text-black font-bold">Home</a>
+            <a href="about.html" class="text-black font-bold">About</a>
+            <a href="services.html" class="text-black font-bold">Services</a>
+            <a href="Portfolio.html" class="text-black font-bold">Portfolio</a>
+            <a href="home.html#testimonials" class="text-black font-bold">Testimonials</a>
+            <a href="home.html#contact" class="text-black font-bold">Contact</a>
+        </div>
+    </nav>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const closeMenu = document.querySelector('.close-menu');
+        const navLinks = document.querySelectorAll('.mobile-menu a');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', toggleMenu);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+    <!-- Who We Are Section -->
+    <section class="pt-32 pb-20 px-6 md:px-12 bg-[#fffff0]">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="reveal text-3xl md:text-4xl font-bold mb-4 text-black text-center">Who We Are</h2>
+            <div class="reveal w-24 h-1 bg-black mx-auto mb-8"></div>
+            <div class="reveal text-lg text-black max-w-4xl mx-auto text-center leading-relaxed opacity-70">
+                <p class="mb-6">Dignity Event is Mumbai's premier event management company, specializing in creating extraordinary experiences that leave lasting impressions. Since our inception in 2017, we've been dedicated to transforming our clients' visions into reality through meticulous planning, creative design, and flawless execution.</p>
+                <p>Our commitment to excellence, attention to detail, and passion for innovation have made us a trusted name in the event management industry. We believe that every event tells a unique story, and we take pride in helping our clients tell theirs in the most memorable way possible.</p>
+            </div>
+
+            <!-- About Owner Section -->
+            <div class="mt-20">
+                <h3 class="reveal text-2xl md:text-3xl font-bold mb-8 text-black text-center">About Owner</h3>
+                <div class="reveal flex flex-col md:flex-row items-center justify-center gap-12">
+                    <div class="md:w-1/3">
+                        <img src="images\about\owner.jpeg" alt="Owner" class="w-64 h-64 object-cover rounded-lg border-2 border-black mx-auto shadow-lg hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <p class="text-lg text-black/70 leading-relaxed">
+                            As the founder and visionary behind Dignity Event, I bring over a decade of experience in the event management industry. My journey began with a simple passion for creating memorable experiences, and today, that passion has evolved into a thriving enterprise that has successfully executed thousands of events. I believe in personally overseeing each project, ensuring that every event reflects our commitment to excellence and attention to detail. My approach combines traditional values with modern innovation, creating experiences that not only meet but exceed our clients' expectations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Team Section -->
+    <section class="py-20 px-6 md:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="reveal text-3xl md:text-4xl font-bold mb-4 text-black text-center">Our Team</h2>
+            <div class="reveal w-24 h-1 bg-black mx-auto mb-12"></div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="reveal bg-[#fffff0] rounded-xl p-8 text-center transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:rotate-1">
+                    <img src="images\about\team 1.jpeg" alt="Anil Dubey" class="w-full h-50 rounded-lg mx-auto mb-6 object-cover border-2 border-black transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+                    <h3 class="text-2xl font-semibold text-black mb-2">Clear Communication</h3>
+                </div>
+                <div class="reveal bg-[#fffff0] rounded-xl p-8 text-center transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-rotate-1">
+                    <img src="images\about\team 2.jpeg" alt="Priya Sharma" class="w-full h-50 rounded-lg mx-auto mb-6 object-cover border-2 border-black transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                    <h3 class="text-2xl font-semibold text-black mb-2">Great Teamwork</h3>
+                </div>
+                <div class="reveal bg-[#fffff0] rounded-xl p-8 text-center transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:rotate-1">
+                    <img src="images\about\team 3.jpeg" alt="Raj Patel" class="w-full h-50 rounded-lg mx-auto mb-6 object-cover border-2 border-black transform -rotate-3 hover:rotate-0 transition-transform duration-300">
+                    <h3 class="text-2xl font-semibold text-black mb-2">Trustworthy People</h3>
+                </div>
+                <div class="reveal bg-[#fffff0] rounded-xl p-8 text-center transform transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:-rotate-1">
+                    <img src="images\about\team 4.JPG" alt="Sarah Khan" class="w-full h-50 rounded-lg mx-auto mb-6 object-cover border-2 border-black transform rotate-3 hover:rotate-0 transition-transform duration-300">
+                    <h3 class="text-2xl font-semibold text-black mb-2">Mutual Respect</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What Sets Us Apart Section -->
+    <section class="py-20 px-6 md:px-12 bg-[#fffff0]">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="reveal text-3xl md:text-4xl font-bold mb-4 text-black text-center">What Sets Us Apart</h2>
+            <div class="reveal w-24 h-1 bg-black mx-auto mb-8"></div>
+            <div class="reveal text-lg text-black/70 max-w-4xl mx-auto text-center mb-16 leading-relaxed">
+                <p>At Dignity Event, we believe in creating not just events, but experiences that resonate with emotions and leave lasting memories. Our approach combines creativity with precision, ensuring that every detail is perfect. We understand that each event is unique, and we tailor our services to match your vision while adding our signature touch of excellence.</p>
+            </div>
+            <section class="bg-[#fffff0] py-20 px-6 md:px-12">
+                <h2 class="text-center font-bold text-5xl md:text-6xl mb-16 text-black">SUCCESSFULLY COMPLETED 7000+ PROJECTS</h2>
+                <div class="grid md:grid-cols-4 gap-12 text-center max-w-7xl mx-auto">
+                    <div class="reveal">
+                        <div class="stat-number">
+                            <span class="number-counter" data-target="50">0</span>
+                            <span class="plus">+</span>
+                        </div>
+                        <span class="stat-label">WEDDING CLIENTS</span>
+                    </div>
+                    <div class="reveal">
+                        <div class="stat-number">
+                            <span class="number-counter" data-target="5000">0</span>
+                            <span class="plus">+</span>
+                        </div>
+                        <span class="stat-label">EVENTS</span>
+                    </div>
+                    <div class="reveal">
+                        <div class="stat-number">
+                            <span class="number-counter" data-target="100">0</span>
+                            <span class="plus">+</span>
+                        </div>
+                        <span class="stat-label">EXHIBITIONS</span>
+                    </div>
+                    <div class="reveal">
+                        <div class="stat-number">
+                            <span class="number-counter" data-target="50">0</span>
+                            <span class="plus">+</span>
+                        </div>
+                        <span class="stat-label">ACTIVATIONS</span>
+                    </div>
+                </div>
+            </section>
+            
+            <style>
+            .stat-number {
+                font-size: 4rem;
+                font-weight: 700;
+                line-height: 1;
+                margin-bottom: 1rem;
+                color: #000000;
+                display: flex;
+                justify-content: center;
+                align-items: baseline;
+            }
+            
+            .plus {
+                font-size: 2.5rem;
+                margin-left: 0.25rem;
+                color: #000000;
+            }
+            
+            .stat-label {
+                font-size: 1.25rem;
+                font-weight: 500;
+                color: #000000;
+                letter-spacing: 2px;
+                display: block;
+            }
+            </style>    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#fffff0] py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-12">
+            <!-- Company Info -->
+            <div class="reveal">
+                <h3 class="text-2xl font-bold text-black mb-4">Dignity Event</h3>
+                <p class="text-black/70 mb-4">Creating extraordinary experiences that leave lasting impressions.</p>
+                <div class="flex space-x-4">
+                    <a href="https://www.facebook.com/people/Dignityeventmanagement/61575120662119/" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@dignityeventmanagement" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.instagram.com/_dignityevents_/?igsh=N3d1M24ybXk2aWF2&utm_source=qr#" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/dignity-event-management-b26993312" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send/?phone=917304457622&text&type=phone_number&app_absent=0" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="reveal">
+                <h4 class="text-xl font-semibold text-black mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="home.html" class="text-black/70 hover:text-black transition">Home</a></li>
+                    <li><a href="about.html" class="text-black/70 hover:text-black transition">About Us</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Services</a></li>
+                    <li><a href="portfolio.html" class="text-black/70 hover:text-black transition">Portfolio</a></li>
+                    <li><a href="#testimonials" class="text-black/70 hover:text-black transition">Testimonials</a></li>
+                </ul>
+            </div>
+            
+            <!-- Services -->
+            <div class="reveal">
+                <h4 class="text-xl font-semibold text-black mb-4">Our Services</h4>
+                <ul class="space-y-2">
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Wedding & Social Events</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Decor & Setup</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Entertainment & Hospitality</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Catering</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Photography & Media</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="reveal">
+                <h4 class="text-xl font-semibold text-black mb-4">Contact Us</h4>
+                <ul class="space-y-2">
+                    <li class="text-black/70 flex items-center"><i class="fas fa-map-marker-alt text-black mr-2"></i>Mumbai, India</li>
+                    <li class="text-black/70 flex items-center"><i class="fas fa-phone text-black mr-2"></i>+91 9082557453</li>
+                    <li class="text-black/70 flex items-center"><i class="fas fa-envelope text-black mr-2"></i>dignityeventmanagement18@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="max-w-6xl mx-auto mt-12 pt-8 border-t border-[#b75004]/20">
+            <p class="text-center text-[#314b7e]">&copy; 2024 Dignity Event. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navigation scroll behavior
+            const nav = document.querySelector('nav');
+            let lastScrollY = window.scrollY;
+            
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                // Show nav when scrolling up or at top, hide when scrolling down
+                if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                    nav.style.transform = 'translateY(-100%)';
+                } else {
+                    nav.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollY = currentScrollY;
+            });
+    
+            // Reveal Animation
+            function reveal() {
+                const reveals = document.querySelectorAll('.reveal');
+                reveals.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('active');
+                    }
+                });
+            }
+
+            // Add animation classes to elements
+            document.querySelectorAll('.stat-circle').forEach(circle => {
+                circle.classList.add('float-animation');
+            });
+
+            document.querySelectorAll('.number-counter').forEach(counter => {
+                counter.parentElement.classList.add('pulse-animation');
+            });
+
+            // Add delay classes to team members
+            document.querySelectorAll('.grid > div').forEach((div, index) => {
+                div.classList.add(`reveal-delay-${(index % 3) + 1}`);
+            });
+
+            // Number Counter Animation
+            const counters = document.querySelectorAll('.number-counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60 FPS
+                let current = 0;
+    
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+    
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        updateCounter();
+                        observer.unobserve(counter);
+                    }
+                });
+    
+                observer.observe(counter);
+            });
+    
+            window.addEventListener('scroll', reveal);
+            reveal();
+        });
+    </script>
+</body>
+</html>

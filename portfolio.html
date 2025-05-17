@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Dignity Event</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            color: #000000;
+            background-color: #fffff0;
+            cursor: default;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: #000000;
+        }
+        .reveal {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .rotate-animation {
+            animation: rotate 20s linear infinite;
+        }
+
+        .pulse-animation {
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .shimmer-animation {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        .photo-item {
+            animation: scaleIn 0.6s ease-out forwards;
+        }
+
+        .award-card {
+            animation: slideInLeft 0.8s ease-out forwards;
+            animation-delay: calc(var(--animation-order, 0) * 0.2s);
+        }
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            border: 2px solid #000000;
+            border-radius: 0.5rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+            
+            .photo-item:hover {
+                transform: scale(1.05) translateY(-10px);
+                box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+            
+            .photo-overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 1.5rem;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .photo-item:hover .photo-overlay {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .photo-description {
+                color: white;
+                text-align: center;
+                font-size: 1.1rem;
+                line-height: 1.6;
+                max-width: 90%;
+                transform: scale(0.9);
+                transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .photo-item:hover .photo-description {
+                transform: scale(1);
+            }
+            
+            .photo-item img {
+                transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            
+            .photo-item:hover img {
+                transform: scale(1.1);
+            }
+        </style>
+    </style>
+</head>
+<body>
+    <style>
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 20px;
+            background-color: rgba(255, 255, 240, 0.98);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid #222222;
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 640px) {
+            .navbar {
+                padding: 20px 40px;
+                justify-content: space-between;
+            }
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 240, 0.98);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+        }
+        .navbar-section {
+            display: none;
+            align-items: center;
+            gap: 30px;
+            flex: 1;
+        }
+
+        .navbar-section:first-of-type {
+            justify-content: flex-end;
+        }
+
+        .navbar-section:last-of-type {
+            justify-content: flex-start;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-section {
+                display: flex;
+            }
+        }
+
+        .logo-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            padding: 0;
+            z-index: 997;
+        }
+
+        @media (min-width: 768px) {
+            .logo-container {
+                position: static;
+                transform: none;
+                padding: 0 20px;
+            }
+        }
+
+        .navbar-section {
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .logo-container img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s;
+        }
+
+        @media (min-width: 640px) {
+            .logo-container img {
+                height: 48px;
+            }
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1000;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @media (min-width: 768px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(255, 255, 240, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transition: left 0.3s ease;
+            z-index: 998;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu a {
+            font-size: 1.25rem;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .mobile-menu a:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+            color: #000;
+            font-size: 1.5rem;
+            display: none;
+        }
+
+        .mobile-menu.active .close-menu {
+            display: block;
+        }
+    </style>
+
+    <nav class="navbar">
+        <button class="menu-toggle md:hidden" aria-label="Toggle menu">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+
+        <div class="navbar-section">
+            <a href="home.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Home</a>
+            <a href="about.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">About</a>
+            <a href="services.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Services</a>
+        </div>
+
+        <div class="logo-container">
+            <a href="home.html">
+                <img src="logo.png" alt="Dignity Events Logo">
+            </a>
+        </div>
+
+        <div class="navbar-section">
+            <a href="Portfolio.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Portfolio</a>
+            <a href="home.html#testimonials" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Testimonials</a>
+            <a href="home.html#contact" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Contact</a>
+        </div>
+
+        <div class="mobile-menu">
+            <button class="close-menu" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="home.html" class="text-black font-bold">Home</a>
+            <a href="about.html" class="text-black font-bold">About</a>
+            <a href="services.html" class="text-black font-bold">Services</a>
+            <a href="Portfolio.html" class="text-black font-bold">Portfolio</a>
+            <a href="home.html#testimonials" class="text-black font-bold">Testimonials</a>
+            <a href="home.html#contact" class="text-black font-bold">Contact</a>
+        </div>
+    </nav>
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const closeMenu = document.querySelector('.close-menu');
+        const navLinks = document.querySelectorAll('.mobile-menu a');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', toggleMenu);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+    <!-- Portfolio Gallery Section -->
+    <section class="pt-32 pb-20 px-6 md:px-12 bg-[#fffff0] overflow-hidden">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="reveal text-3xl md:text-4xl font-bold mb-4 text-[#b75004] text-center">Our Work</h2>
+            <div class="reveal w-24 h-1 bg-[#b75004] mx-auto mb-12"></div>
+            <div class="photo-grid" style="opacity: 1; transform: translateY(0);" data-animate="true">
+                <!-- Wedding Events -->
+                <div class="photo-item reveal">
+                    <img src="images\portfolio\luxury.jpg" alt="Luxury Wedding" class="w-full h-64 object-cover rounded-lg">
+                    <div class="photo-overlay rounded-lg">
+                        <p class="photo-description">Elegant luxury wedding with crystal chandeliers and floral decor</p>
+                    </div>
+                </div>
+                <div class="photo-item reveal">
+                    <img src="images\portfolio\dance.jpeg" alt="Traditional Wedding" class="w-full h-64 object-cover rounded-lg">
+                    <div class="photo-overlay rounded-lg">
+                        <p class="photo-description">Traditional Indian wedding with vibrant mandap and decorations</p>
+                    </div>
+                </div>
+                <div class="photo-item reveal">
+                    <img src="images\portfolio\destination Wedding.jpeg" alt="Destination Wedding" class="w-full h-64 object-cover rounded-lg">
+                    <div class="photo-overlay rounded-lg">
+                        <p class="photo-description">Beachside destination wedding with natural elegance</p>
+                    </div>
+                </div>
+            
+                <!-- Corporate Events -->
+                <div class="photo-item reveal">
+                    <img src="images\portfolio\corporate.jpeg" alt="Corporate Conference" class="w-full h-64 object-cover rounded-lg">
+                    <div class="photo-overlay rounded-lg">
+                        <p class="photo-description">High-tech corporate conference with immersive presentations</p>
+                    </div>
+                </div>
+                <div class="photo-item reveal">
+                    <img src="images/portfolio/product launch.jpeg" alt="Product Launch" class="w-full h-64 object-cover rounded-lg">
+                    <div class="photo-overlay rounded-lg">
+                        <p class="photo-description">Interactive product launch with cutting-edge displays</p>
+                    </div>
+                </div>
+                <div class="photo-item reveal">
+                    <img src="images\portfolio\award ceremony.jpeg" alt="Award Ceremony" class="w-full h-64 object-cover rounded-lg">
+                    <div class="photo-overlay rounded-lg">
+                        <p class="photo-description">Prestigious award ceremony with sophisticated staging</p>
+                    </div>
+                </div>
+            
+                <!-- Social Events -->
+                <div class="photo-item reveal">
+                    <img src="images\portfolio\birthday party.jpeg" alt="Birthday Party" class="w-full h-64 object-cover rounded-lg">
+                    <div class="photo-overlay rounded-lg">
+                        <p class="photo-description">Themed birthday celebration with custom entertainment</p>
+                    </div>
+                </div>
+                <div class="photo-item reveal">
+                    <img src="images\portfolio\concert.jpeg" alt="Anniversary" class="w-full h-64 object-cover rounded-lg">
+                    <div class="photo-overlay rounded-lg">
+                        <p class="photo-description">Romantic anniversary dinner with intimate ambiance</p>
+                    </div>
+                </div>
+                <div class="photo-item reveal">
+                    <img src="images\portfolio\mehendi ceremony.jpeg" alt="Engagement" class="w-full h-64 object-cover rounded-lg">
+                    <div class="photo-overlay rounded-lg">
+                        <p class="photo-description">Elegant engagement ceremony with personalized touches</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Awards Section -->
+    <section class="py-20 px-6 md:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="reveal text-3xl md:text-4xl font-bold mb-4 text-[#b75004] text-center">Awards & Recognition</h2>
+            <div class="reveal w-24 h-1 bg-[#b75004] mx-auto mb-12"></div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="award-card p-6 rounded-xl reveal">
+                    <div class="text-[#b75004] mb-4">
+                        <i class="fas fa-trophy text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#b75004]">Best Event Management Company</h3>
+                    <p class="text-[#314b7e]">Awarded by Mumbai Event Association for excellence in event planning and execution</p>
+                </div>
+                <div class="award-card p-6 rounded-xl reveal">
+                    <div class="text-[#b75004] mb-4">
+                        <i class="fas fa-medal text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#b75004]">Innovation in Events</h3>
+                    <p class="text-[#314b7e]">Recognized for introducing innovative concepts and technology in event management</p>
+                </div>
+                <div class="award-card p-6 rounded-xl reveal">
+                    <div class="text-[#b75004] mb-4">
+                        <i class="fas fa-star text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-[#b75004]">Customer Satisfaction Excellence</h3>
+                    <p class="text-[#314b7e]">Highest rated event management company for customer satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Collaborations Section -->
+    <section class="py-20 px-6 md:px-12 bg-black/90">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="reveal text-3xl md:text-4xl font-bold mb-4 text-black text-center">Our Collaborations</h2>
+            <div class="reveal w-24 h-1 bg-yellow-400 mx-auto mb-12"></div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+                <div class="reveal">
+                    <img src="https://www.tvsmotor.com/-/media/Feature/Header/TVSLogo-hr.svg" alt="Nike" class="collab-logo w-32 mx-auto">
+                </div>
+                <div class="reveal">
+                    <img src="https://imasindia.in/wp-content/uploads/2023/11/cropped-imas.png" alt="Samsung" class="collab-logo w-32 mx-auto">
+                </div>
+                <div class="reveal">
+                    <img src="https://www.jumbokids.com/wp-content/uploads/2015/02/Jumbo-Logo.png" alt="Visa" class="collab-logo w-32 mx-auto">
+                </div>
+                <div class="reveal">
+                    <img src="images\portfolio\logo.jpeg" alt="Google" class="collab-logo w-32 mx-auto">
+                </div>
+                <div class="reveal">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" alt="Apple" class="collab-logo w-32 mx-auto">
+                </div>
+                <div class="reveal">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" alt="Microsoft" class="collab-logo w-32 mx-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section class="py-20 px-6 md:px-12 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 text-[#b75004] text-center">Our Achievements</h2>
+            <div class="w-24 h-1 bg-[#b75004] mx-auto mb-8"></div>
+            <div class="text-center mb-12">
+                <h3 class="text-2xl text-[#b75004] font-bold italic mb-4">Experience is the asset</h3>
+                <p class="text-[#314b7e] max-w-3xl mx-auto">Our journey of excellence has been recognized by industry leaders and satisfied clients alike. Each award represents our commitment to delivering exceptional experiences and pushing the boundaries of event management.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="award-card p-6 rounded-xl text-center bg-white border-2 border-[#b75004]">
+                    <img src="images\portfolio\award 2.jpeg" alt="Best Event Management Company 2023" class="w-50 h-50 mx-auto mb-4 text-[#b75004]">
+                    <h4 class="text-xl font-bold text-[#b75004] mb-2">Type Excellence in Overall Event Management </h4>
+                    <p class="text-[#314b7e]">Beti Bachao Beti Padao Charitable Trust</p>
+                </div>
+                <div class="award-card p-6 rounded-xl text-center bg-white border-2 border-[#b75004]">
+                    <img src="images\portfolio\award 1.jpeg" alt="Excellence in Corporate Events" class="w-45 h-45 mx-auto mb-4 text-[#b75004]">
+                    <h4 class="text-xl font-bold text-[#b75004] mb-2">Excellence in Corporate Events</h4>
+                    <p class="text-[#314b7e]">Business Standard</p>
+                </div>
+                <div class="award-card p-6 rounded-xl text-center bg-white border-2 border-[#b75004]">
+                    <img src="images\portfolio\award 3.jpeg" alt="Innovation in Event Technology" class="w-50 h-50 mx-auto mb-4 text-[#b75004]">
+                    <h4 class="text-xl font-bold text-[#b75004] mb-2">Appreciation for Excellent Execution</h4>
+                    <p class="text-[#314b7e]">Imas Abacus India</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#fffff0] py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-12">
+            <!-- Company Info -->
+            <div class="reveal">
+                <h3 class="text-2xl font-bold text-black mb-4">Dignity Event</h3>
+                <p class="text-black/70 mb-4">Creating extraordinary experiences that leave lasting impressions.</p>
+                <div class="flex space-x-4">
+                    <a href="https://www.facebook.com/people/Dignityeventmanagement/61575120662119/" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@dignityeventmanagement" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://www.instagram.com/_dignityevents_/?igsh=N3d1M24ybXk2aWF2&utm_source=qr#" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/dignity-event-management-b26993312" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="https://api.whatsapp.com/send/?phone=917304457622&text&type=phone_number&app_absent=0" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="reveal">
+                <h4 class="text-xl font-semibold text-black mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="home.html" class="text-black/70 hover:text-black transition">Home</a></li>
+                    <li><a href="about.html" class="text-black/70 hover:text-black transition">About Us</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Services</a></li>
+                    <li><a href="portfolio.html" class="text-black/70 hover:text-black transition">Portfolio</a></li>
+                    <li><a href="#testimonials" class="text-black/70 hover:text-black transition">Testimonials</a></li>
+                </ul>
+            </div>
+            
+            <!-- Services -->
+            <div class="reveal">
+                <h4 class="text-xl font-semibold text-black mb-4">Our Services</h4>
+                <ul class="space-y-2">
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Wedding & Social Events</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Decor & Setup</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Entertainment & Hospitality</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Catering</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Photography & Media</a></li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="reveal">
+                <h4 class="text-xl font-semibold text-black mb-4">Contact Us</h4>
+                <ul class="space-y-2">
+                    <li class="text-black/70 flex items-center"><i class="fas fa-map-marker-alt text-black mr-2"></i>Mumbai, India</li>
+                    <li class="text-black/70 flex items-center"><i class="fas fa-phone text-black mr-2"></i>+91 9082557453</li>
+                    <li class="text-black/70 flex items-center"><i class="fas fa-envelope text-black mr-2"></i>dignityeventmanagement18@gmail.com</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Copyright -->
+        <div class="max-w-6xl mx-auto mt-12 pt-8 border-t border-[#b75004]/20">
+            <p class="text-center text-[#314b7e]">&copy; 2024 Dignity Event. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Navigation scroll behavior
+            const nav = document.querySelector('nav');
+            let lastScrollY = window.scrollY;
+            
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                // Show nav when scrolling up or at top, hide when scrolling down
+                if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                    nav.style.transform = 'translateY(-100%)';
+                } else {
+                    nav.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollY = currentScrollY;
+            });
+    
+            // Reveal Animation
+            function reveal() {
+                const reveals = document.querySelectorAll('.reveal');
+                reveals.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('active');
+                    }
+                });
+            }
+
+            // Add animation classes to elements
+            document.querySelectorAll('.stat-circle').forEach(circle => {
+                circle.classList.add('float-animation');
+            });
+
+            document.querySelectorAll('.number-counter').forEach(counter => {
+                counter.parentElement.classList.add('pulse-animation');
+            });
+
+            // Add delay classes to team members
+            document.querySelectorAll('.grid > div').forEach((div, index) => {
+                div.classList.add(`reveal-delay-${(index % 3) + 1}`);
+            });
+
+            // Number Counter Animation
+            const counters = document.querySelectorAll('.number-counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60 FPS
+                let current = 0;
+    
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+    
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        updateCounter();
+                        observer.unobserve(counter);
+                    }
+                });
+    
+                observer.observe(counter);
+            });
+    
+            window.addEventListener('scroll', reveal);
+            reveal();
+        });
+    </script>
+</body>
+</html>
+

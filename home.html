@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dignity Event | Professional Event Management Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #fffff0;
+            color: #000000;
+            cursor: default;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            color: #000000;
+        }
+        .gradient-text {
+            background: linear-gradient(45deg, #b75000, #344b7e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-button {
+            background: #000000;
+            color: #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hero-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(34, 34, 34, 0.15);
+            background: #222222;
+        }
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(253, 224, 71, 0.2), 0 0 10px rgba(253, 224, 71, 0.1), inset 0 0 5px rgba(253, 224, 71, 0.1); }
+            50% { box-shadow: 0 0 20px rgba(253, 224, 71, 0.4), 0 0 20px rgba(253, 224, 71, 0.2), inset 0 0 10px rgba(253, 224, 71, 0.2); }
+            100% { box-shadow: 0 0 5px rgba(253, 224, 71, 0.2), 0 0 10px rgba(253, 224, 71, 0.1), inset 0 0 5px rgba(253, 224, 71, 0.1); }
+        }
+        .service-card:hover {
+            animation: glow 3s ease-in-out infinite;
+        }
+        .reveal {
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1s ease;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="min-h-screen">
+    <style>
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 20px;
+            background-color: rgba(255, 255, 240, 0.98);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid #222222;
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 640px) {
+            .navbar {
+                padding: 20px 40px;
+                justify-content: space-between;
+            }
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(255, 255, 240, 0.98);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+        }
+        .navbar-section {
+            display: none;
+            align-items: center;
+            gap: 30px;
+            flex: 1;
+        }
+
+        .navbar-section:first-of-type {
+            justify-content: flex-end;
+        }
+
+        .navbar-section:last-of-type {
+            justify-content: flex-start;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-section {
+                display: flex;
+            }
+        }
+
+        .logo-container {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            padding: 0;
+            z-index: 997;
+        }
+
+        @media (min-width: 768px) {
+            .logo-container {
+                position: static;
+                transform: none;
+                padding: 0 20px;
+            }
+        }
+
+        .navbar-section {
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .logo-container img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s;
+        }
+
+        @media (min-width: 640px) {
+            .logo-container img {
+                height: 48px;
+            }
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-toggle {
+            display: block;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1000;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @media (min-width: 768px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(255, 255, 240, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transition: left 0.3s ease;
+            z-index: 998;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu a {
+            font-size: 1.25rem;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: #000;
+            font-weight: 600;
+        }
+
+        .mobile-menu a:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+            color: #000;
+            font-size: 1.5rem;
+            display: none;
+        }
+
+        .mobile-menu.active .close-menu {
+            display: block;
+        }
+    </style>
+
+    <nav class="navbar">
+        <button class="menu-toggle md:hidden" aria-label="Toggle menu">
+            <i class="fas fa-bars text-2xl"></i>
+        </button>
+
+        <div class="navbar-section">
+            <a href="home1.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Home</a>
+            <a href="about.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">About</a>
+            <a href="services.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Services</a>
+        </div>
+
+        <div class="logo-container">
+            <a href="index.html">
+                <img src="logo.png" alt="Dignity Events Logo">
+            </a>
+        </div>
+
+        <div class="navbar-section">
+            <a href="gallery.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Gallery</a>
+            <a href="testimonials.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Testimonials</a>
+            <a href="contact.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Contact</a>
+        </div>
+
+        <div class="mobile-menu">
+            <button class="close-menu" aria-label="Close menu">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="home1.html" class="text-black font-bold">Home</a>
+            <a href="about.html" class="text-black font-bold">About</a>
+            <a href="services.html" class="text-black font-bold">Services</a>
+            <a href="gallery.html" class="text-black font-bold">Gallery</a>
+            <a href="testimonials.html" class="text-black font-bold">Testimonials</a>
+            <a href="contact.html" class="text-black font-bold">Contact</a>
+        </div>
+    </nav>
+
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const closeMenu = document.querySelector('.close-menu');
+        const navLinks = document.querySelectorAll('.mobile-menu a');
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle('active');
+            document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        menuToggle.addEventListener('click', toggleMenu);
+        closeMenu.addEventListener('click', toggleMenu);
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+
+        // Navbar background change on scroll
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[60vh] sm:min-h-screen flex items-center justify-center overflow-hidden">
+        <video class="absolute inset-0 w-50 h-full object-cover object-center" autoplay muted loop playsinline style="min-width:100%;min-height:100%;max-width:none;max-height:none;">
+            <source src="images/video1.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-[#314b7e] bg-opacity-60 sm:bg-opacity-50"></div>
+        <div class="relative z-10 text-center px-4 sm:px-6 py-8 sm:py-0">
+        </div>
+    </section>
+
+    <section>
+        <br>
+        <br>
+    
+        <div class="relative z-10 text-center px-6">
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 text-black">Welcome to <span class="gradient-text">Dignity Event Management</span></h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto text-black">Crafting The Moments That Matters!</p>
+    </div></section>
+    
+    <!-- Key Features Section -->
+    <section class="py-8 sm:py-16 md:py-20 px-6 md:px-12 bg-gradient-to-br from-[#1e1b4b] via-[#581c87] to-[#86198f]">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 md:gap-8">
+            <!-- Event Block -->
+            <div class="reveal bg-slate-900/90 backdrop-blur-lg rounded-xl p-5 sm:p-6 md:p-8 transform transition-all duration-500 hover:translate-y-[-10px] hover:shadow-xl hover:shadow-blue-500/20 relative overflow-hidden group border-2 border-blue-400/30">
+                <div class="absolute inset-0 opacity-90 group-hover:opacity-60 transition-opacity duration-500 bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80')"></div>
+                <div class="relative z-10 bg-white/90 backdrop-blur-lg p-4 sm:p-6 rounded-xl text-center">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">Events</h3>
+                    <p class="text-sm sm:text-base text-white leading-relaxed">We handle all types of events — from grand weddings and corporate meets to intimate gatherings and cultural shows. Every occasion is crafted with care, creativity, and professionalism.</p>
+                </div>
+            </div>
+    
+            <!-- Innovation Block -->
+            <div class="reveal bg-slate-900/90 backdrop-blur-lg rounded-xl p-5 sm:p-6 md:p-8 transform transition-all duration-500 hover:translate-y-[-10px] hover:shadow-xl hover:shadow-blue-500/20 relative overflow-hidden group border-2 border-blue-400/30">
+                <div class="absolute inset-0 opacity-80 group-hover:opacity-60 transition-opacity duration-500 bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1505236858219-8359eb29e329?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80')"></div>
+                <div class="relative z-10 bg-white/90 backdrop-blur-lg p-4 sm:p-6 rounded-xl text-center">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">Innovation</h3>
+                    <p class="text-sm sm:text-base text-white leading-relaxed">Fresh ideas, unique themes, and modern designs are at the core of our work. We believe in thinking beyond the usual and delivering concepts that surprise and delight.</p>
+                </div>
+            </div>
+    
+            <!-- Perfection Block -->
+            <div class="reveal bg-slate-900/90 backdrop-blur-lg rounded-xl p-5 sm:p-6 md:p-8 transform transition-all duration-500 hover:translate-y-[-10px] hover:shadow-xl hover:shadow-blue-500/20 relative overflow-hidden group border-2 border-blue-400/30">
+                <div class="absolute inset-0 opacity-80 group-hover:opacity-60 transition-opacity duration-500 bg-cover bg-center" style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80')"></div>
+                <div class="relative z-10 bg-white/90 backdrop-blur-lg p-4 sm:p-6 rounded-xl text-center">
+                    <h3 class="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 text-white">Perfection</h3>
+                    <p class="text-sm sm:text-base text-white leading-relaxed">Flawless execution is our signature. From planning to the final touch, every detail is handled with precision and care.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Us Section -->
+    <section id="about" class="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 bg-gradient-to-br from-[#1e1b4b] via-[#581c87] to-[#86198f]">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-12 sm:mb-16 flex flex-col items-center">
+                <div class="reveal w-24 sm:w-32 h-1 bg-[#fde047] mx-auto mb-8 sm:mb-12"></div>
+                <div class="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 max-w-5xl">
+                    <div class="reveal text-center md:text-left md:w-2/3 px-4">
+                        <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 text-white"><span class="gradient-text">Dignity Event Management</span></h1>
+                        <p class="text-base sm:text-lg md:text-xl text-black font-bold leading-relaxed mb-4">Event management company in Mumbai - 7 Years of Excellence in Event Planning</p>
+                        <p class="text-sm sm:text-base md:text-lg text-white/80 leading-relaxed">For 7 remarkable years, Dignity Event Management has been a trusted name in event planning and execution, proudly headquartered in Mumbai. Our journey has been marked by countless successful events, from grand weddings to corporate gatherings. We specialize in creating seamless, one-stop solutions for all types of events, including corporate functions, brand activations, exhibitions, conferences, and customized experiences. What sets us apart is our unwavering commitment to creativity, precision, and excellence.</p>
+                    </div>
+                    <div class="reveal flex-shrink-0 flex justify-center items-center md:w-1/3 px-4 sm:px-0">
+                        <img src="images/Untitled design_20250430_215438_0000.pdf_20250504_213401_0000.jpg" alt="7 Years of Excellence in Event Management" class="w-36 sm:w-48 md:w-72 h-auto rounded-lg object-contain shadow-md hover:scale-105 transition-transform duration-300">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="border-t-4 border-black max-w-7xl mx-auto my-12"></div>
+
+    <!-- Our Partners Section -->
+    <section class="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 bg-white">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-black">Our Partners</h2>
+            <div class="flex flex-wrap justify-center items-center gap-8">
+                <img src="https://www.tvsmotor.com/-/media/Feature/Header/TVSLogo-hr.svg" alt="Partner 1" class="h-20 w-auto object-contain grayscale hover:grayscale-0 transition duration-300">
+                <img src="https://imasindia.in/wp-content/uploads/2023/11/cropped-imas.png" alt="Partner 2" class="h-20 w-auto object-contain grayscale hover:grayscale-0 transition duration-300">
+                <img src="https://www.jumbokids.com/wp-content/uploads/2015/02/Jumbo-Logo.png" alt="Partner 3" class="h-20 w-auto object-contain grayscale hover:grayscale-0 transition duration-300">
+                <img src="images\portfolio\logo.jpeg" alt="Partner 4" class="h-20 w-auto object-contain grayscale hover:grayscale-0 transition duration-300">
+                <img src="images\portfolio\logo 2.jpeg" alt="Partner 5" class="h-20 w-auto object-contain grayscale hover:grayscale-0 transition duration-300">
+            </div>
+        </div>
+    </section>
+
+
+<section class="bg-[#fffff0] py-12 sm:py-16 md:py-20 px-4 sm:px-6">
+    <h2 class="text-center font-bold text-3xl sm:text-4xl md:text-5xl mb-12 sm:mb-16 text-black">SUCCESSFULLY COMPLETED 7000+ PROJECTS</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 text-center max-w-7xl mx-auto px-4">
+        <div class="reveal">
+            <div class="stat-number">
+                <span class="number-counter text-3xl sm:text-4xl md:text-5xl" data-target="50">0</span>
+                <span class="plus text-xl sm:text-2xl md:text-3xl">+</span>
+            </div>
+            <span class="stat-label text-base sm:text-lg md:text-xl">WEDDING CLIENTS</span>
+        </div>
+        <div class="reveal">
+            <div class="stat-number">
+                <span class="number-counter text-3xl sm:text-4xl md:text-5xl" data-target="5000">0</span>
+                <span class="plus text-xl sm:text-2xl md:text-3xl">+</span>
+            </div>
+            <span class="stat-label text-base sm:text-lg md:text-xl">EVENTS</span>
+        </div>
+        <div class="reveal">
+            <div class="stat-number">
+                <span class="number-counter text-3xl sm:text-4xl md:text-5xl" data-target="100">0</span>
+                <span class="plus text-xl sm:text-2xl md:text-3xl">+</span>
+            </div>
+            <span class="stat-label text-base sm:text-lg md:text-xl">EXHIBITIONS</span>
+        </div>
+        <div class="reveal">
+            <div class="stat-number">
+                <span class="number-counter text-3xl sm:text-4xl md:text-5xl" data-target="50">0</span>
+                <span class="plus text-xl sm:text-2xl md:text-3xl">+</span>
+            </div>
+            <span class="stat-label text-base sm:text-lg md:text-xl">ACTIVATIONS</span>
+        </div>
+    </div>
+</section>
+
+<style>
+.stat-number {
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 1rem;
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.plus {
+    margin-left: 0.25rem;
+    color: #000000;
+}
+
+.stat-label {
+    font-weight: 500;
+    color: #000000;
+    letter-spacing: 2px;
+    display: block;
+}
+</style>
+
+<div class="border-t-4 border-black max-w-7xl mx-auto my-12"></div>
+
+<!-- Our Work Section -->
+<section class="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 bg-[#fffff0]">
+    <div class="max-w-6xl mx-auto">
+        <h2 class="text-center font-bold text-3xl sm:text-4xl md:text-5xl mb-8 sm:mb-12 text-black">Our Work</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+            <div class="reveal overflow-hidden rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl">
+                <img src="images/slideshow1/slide1.jpeg" alt="Event Work 1" class="w-full h-48 sm:h-56 md:h-64 object-cover transition-transform duration-500 hover:scale-110">
+            </div>
+            <div class="reveal overflow-hidden rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl">
+                <img src="images/slideshow2/slide2.jpeg" alt="Event Work 2" class="w-full h-48 sm:h-56 md:h-64 object-cover transition-transform duration-500 hover:scale-110">
+            </div>
+            <div class="reveal overflow-hidden rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl">
+                <img src="images/slideshow3/slide3.jpeg" alt="Event Work 3" class="w-full h-48 sm:h-56 md:h-64 object-cover transition-transform duration-500 hover:scale-110">
+            </div>
+            <div class="reveal overflow-hidden rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl">
+                <img src="images/slideshow1/slide4.jpeg" alt="Event Work 4" class="w-full h-48 sm:h-56 md:h-64 object-cover transition-transform duration-500 hover:scale-110">
+            </div>
+            <div class="reveal overflow-hidden rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl">
+                <img src="images/slideshow2/slide5.jpeg" alt="Event Work 5" class="w-full h-48 sm:h-56 md:h-64 object-cover transition-transform duration-500 hover:scale-110">
+            </div>
+            <div class="reveal overflow-hidden rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl">
+                <img src="images/slideshow3/slide1.jpeg" alt="Event Work 6" class="w-full h-48 sm:h-56 md:h-64 object-cover transition-transform duration-500 hover:scale-110">
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="bg-[#fffff0] py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 relative">
+        <h2 class="text-center font-bold text-3xl sm:text-4xl md:text-5xl mb-8 sm:mb-12 text-black">Client Testimonials</h2>
+        <div class="max-w-6xl mx-auto">
+            <div class="relative">
+                <button class="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 sm:-translate-x-12 text-black hover:text-gray-600 transition-colors duration-300 focus:outline-none hidden md:block" onclick="prevSlide()">
+                    <i class="fas fa-chevron-left text-3xl sm:text-4xl"></i>
+                </button>
+                <div class="testimonials-container overflow-hidden">
+                    <div class="testimonials-track flex transition-transform duration-500" id="testimonialsTrack">
+                        <div class="testimonial-card w-full flex-shrink-0 px-2 sm:px-4">
+                            <div class="bg-white p-6 sm:p-8 rounded-xl shadow-lg text-center relative border-gradient">
+                                <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-black opacity-10">
+                                    <i class="fas fa-quote-left text-4xl sm:text-6xl"></i>
+                                </div>
+                                <p class="text-lg sm:text-xl md:text-2xl text-black leading-relaxed mb-6 sm:mb-8 mt-4">"Dignity Event made our wedding day absolutely perfect. Their attention to detail and creativity exceeded our expectations."</p>
+                                <h4 class="text-black font-semibold text-xl">Priya & Rahul</h4>
+                                <p class="text-gray-600">Wedding Clients</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-card w-full flex-shrink-0 px-4">
+                            <div class="bg-white p-8 rounded-xl shadow-lg text-center relative border-gradient">
+                                <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-black opacity-10">
+                                    <i class="fas fa-quote-left text-6xl"></i>
+                                </div>
+                                <p class="text-xl md:text-2xl text-black leading-relaxed mb-8 mt-4">"Professional team that delivered an outstanding corporate event. Our employees are still talking about it!"</p>
+                                <h4 class="text-black font-semibold text-xl">Rajesh Kumar</h4>
+                                <p class="text-gray-600">CEO, Tech Solutions</p>
+                            </div>
+                        </div>
+                        <div class="testimonial-card w-full flex-shrink-0 px-4">
+                            <div class="bg-white p-8 rounded-xl shadow-lg text-center relative border-gradient">
+                                <div class="absolute -top-6 left-1/2 transform -translate-x-1/2 text-black opacity-10">
+                                    <i class="fas fa-quote-left text-6xl"></i>
+                                </div>
+                                <p class="text-xl md:text-2xl text-black leading-relaxed mb-8 mt-4">"The best event planners in Mumbai! They turned our vision into reality and made our anniversary celebration unforgettable."</p>
+                                <h4 class="text-black font-semibold text-xl">Meera & Arun</h4>
+                                <p class="text-gray-600">Anniversary Celebration</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-12 text-black hover:text-gray-600 transition-colors duration-300 focus:outline-none hidden md:block" onclick="nextSlide()">
+                    <i class="fas fa-chevron-right text-4xl"></i>
+                </button>
+                <div class="flex justify-center space-x-2 mt-8">
+                    <button class="w-3 h-3 rounded-full bg-black" onclick="goToSlide(0)"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300" onclick="goToSlide(1)"></button>
+                    <button class="w-3 h-3 rounded-full bg-gray-300" onclick="goToSlide(2)"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .testimonials-container {
+            width: 100%;
+            position: relative;
+        }
+        .testimonials-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .testimonial-card {
+            width: 100%;
+        }
+        .border-gradient {
+            position: relative;
+            background: white;
+            padding: 3px;
+            border-radius: 1rem;
+        }
+        .border-gradient::before {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            z-index: -1;
+            background: linear-gradient(45deg, #000000, #333333);
+            border-radius: inherit;
+            transition: opacity 0.3s ease;
+        }
+        .border-gradient:hover::before {
+            opacity: 0.8;
+        }
+    </style>
+
+    <script>
+        let currentSlide = 0;
+        const track = document.getElementById('testimonialsTrack');
+        const slides = document.querySelectorAll('.testimonial-card');
+        const dots = document.querySelectorAll('.flex.justify-center button');
+
+        function updateSlidePosition() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('bg-black', index === currentSlide);
+                dot.classList.toggle('bg-gray-300', index !== currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlidePosition();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlidePosition();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlidePosition();
+        }
+
+        // Auto-advance slides every 5 seconds
+        setInterval(nextSlide, 5000);
+    </script>
+</section>
+    
+    <style>
+        @keyframes formFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
+        }
+        @keyframes cardSlide {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes mapReveal {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .contact-form:hover {
+            animation: formFloat 3s ease-in-out infinite;
+        }
+        .contact-card {
+            animation: cardSlide 0.8s ease-out forwards;
+            opacity: 0;
+        }
+        .contact-card:nth-child(2) { animation-delay: 0.2s; }
+        .contact-card:nth-child(3) { animation-delay: 0.4s; }
+        .map-container {
+            animation: mapReveal 1s ease-out 0.6s forwards;
+            opacity: 0;
+        }
+    </style>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 md:px-12 bg-[#fffff0]">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="reveal text-3xl md:text-4xl font-bold mb-4 text-black text-center">Contact Us</h2>
+            <div class="reveal w-24 h-1 bg-black mx-auto mb-12"></div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div class="reveal">
+                    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form space-y-6 bg-white p-8 rounded-xl border-2 border-black/10 hover:border-black/30 transition-all duration-300 shadow-lg hover:shadow-xl">
+                        <input type="hidden" name="access_key" value="196d697e-0bf5-4883-90ab-12f645049bc5">
+                        <input type="hidden" name="redirect" value="thank-you.html">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                        <div>
+                            <label class="block text-black font-semibold mb-2 tracking-wide" for="name">Name</label>
+                            <input type="text" name="name" id="name" required class="w-full px-4 py-3 rounded-lg bg-[#fffff0] border-2 border-black/10 text-black placeholder-black/50 focus:border-black focus:outline-none transition-all duration-300 hover:border-black/30" placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label class="block text-black font-semibold mb-2 tracking-wide" for="email">Email</label>
+                            <input type="email" name="email" id="email" required class="w-full px-4 py-3 rounded-lg bg-[#fffff0] border-2 border-black/10 text-black placeholder-black/50 focus:border-black focus:outline-none transition-all duration-300 hover:border-black/30" placeholder="your@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-black font-semibold mb-2 tracking-wide" for="message">Message</label>
+                            <textarea name="message" id="message" rows="4" required class="w-full px-4 py-3 rounded-lg bg-[#fffff0] border-2 border-black/10 text-black placeholder-black/50 focus:border-black focus:outline-none transition-all duration-300 hover:border-black/30" placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full py-4 px-6 rounded-lg bg-black text-white font-bold hover:bg-black/90 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+    
+                <!-- Contact Info -->
+                <div class="reveal space-y-8">
+
+                    <div class="contact-card flex items-center space-x-4 bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+                        <div class="text-black">
+                            <i class="fas fa-phone text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-black font-semibold">Phone</h3>
+                            <p class="text-black/70">+91 123 456 7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-card flex items-center space-x-4 bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+                        <div class="text-black">
+                            <i class="fas fa-envelope text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-black font-semibold">Email</h3>
+                            <p class="text-black/70">info@dignityevent.com</p>
+                        </div>
+                        
+                    </div>
+                    
+                <div class="map-container w-full h-[950px] rounded-lg overflow-hidden shadow-lg">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.072086047286!2d72.86635517418952!3d19.27923114556298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b1a80a55001f%3A0x20de23fbfb48f177!2sDignity%20Event%20Management!5e0!3m2!1sen!2sin!4v1745332677362!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-[#fffff0] py-16 px-6 md:px-12 border-t border-black/10">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <!-- Company Info -->
+            <div class="reveal">
+                <h3 class="text-2xl font-bold text-black mb-4">Dignity Event</h3>
+                <p class="text-black/70 mb-4">Creating extraordinary experiences that leave lasting impressions.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-black hover:text-black/70 transition">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="text-black hover:text-black/70 transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-black hover:text-black/70 transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-black hover:text-black/70 transition">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div class="reveal">
+                <h4 class="text-xl font-semibold text-black mb-4">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="home.html" class="text-black/70 hover:text-black transition">Home</a></li>
+                    <li><a href="about.html" class="text-black/70 hover:text-black transition">About Us</a></li>
+                    <li><a href="services.html" class="text-black/70 hover:text-black transition">Services</a></li>
+                    <li><a href="portfolio.html" class="text-black/70 hover:text-black transition">Portfolio</a></li>
+                </ul>
+            </div>
+            
+            <!-- Services -->
+            <div class="reveal">
+                <h4 class="text-xl font-semibold text-black mb-4">Our Services</h4>
+                <ul class="space-y-2">
+                    <li class="text-black/70">Corporate Events</li>
+                    <li class="text-black/70">Wedding Planning</li>
+                    <li class="text-black/70">Birthday Celebrations</li>
+                    <li class="text-black/70">Social Gatherings</li>
+                </ul>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="reveal">
+                <h4 class="text-xl font-semibold text-black mb-4">Contact Us</h4>
+                <ul class="space-y-2">
+                    <li class="text-black/70"><i class="fas fa-map-marker-alt text-black mr-2"></i>Mumbai, India</li>
+                    <li class="text-black/70"><i class="fas fa-phone text-black mr-2"></i>+91 123 456 7890</li>
+                    <li class="text-black/70"><i class="fas fa-envelope text-black mr-2"></i>info@dignityevent.com</li>
+                </ul>
+            </div>
+        </div>
+                
+        <!-- Copyright -->
+        <div class="max-w-6xl mx-auto mt-12 pt-8 border-t border-[#b75004]/20">
+            <p class="text-center text-[#314b7e]">&copy; 2024 Dignity Event. All rights reserved.</p>
+        </div>
+
+    </footer>
+    <script>
+        // Reveal Animation
+        function reveal() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', reveal);
+        window.addEventListener('load', reveal);
+    </script>
+
+<script>
+    window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+</script>
+
+<style>
+    .reveal {
+        position: relative;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 1s ease;
+    }
+    
+    .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+
+<script>
+    function reveal() {
+        var reveals = document.querySelectorAll('.reveal');
+        for (var i = 0; i < reveals.length; i++) {
+            var windowHeight = window.innerHeight;
+            var elementTop = reveals[i].getBoundingClientRect().top;
+            var elementVisible = 150;
+            if (elementTop < windowHeight - elementVisible) {
+                reveals[i].classList.add('active');
+            }
+        }
+    }
+    window.addEventListener('scroll', reveal);
+    window.addEventListener('load', reveal);
+</script>
+<script>
+// Counter animation
+document.addEventListener("DOMContentLoaded", function() {
+    const counters = document.querySelectorAll('.number-counter');
+    const speed = 200;
+
+    const animateCounter = (counter) => {
+        const target = +counter.getAttribute('data-target');
+        const count = +counter.innerText;
+        const increment = target / speed;
+
+        if (count < target) {
+            counter.innerText = Math.ceil(count + increment);
+            setTimeout(() => animateCounter(counter), 1);
+        } else {
+            counter.innerText = target;
+        }
+    };
+
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const counter = entry.target;
+                animateCounter(counter);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => {
+        counter.innerText = '0';
+        counterObserver.observe(counter);
+    });
+});
+
+// Section reveal animation
+function revealOnScroll() {
+    const reveals = document.querySelectorAll('section');
+    reveals.forEach(section => {
+        section.classList.add('reveal');
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(section => observer.observe(section));
+}
+
+document.addEventListener('DOMContentLoaded', revealOnScroll);
+</script>
+</body>
+</html>
