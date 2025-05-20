@@ -464,108 +464,119 @@
     </style>
 
     <style>
-        /* Slideshow Styles */
+        /* Responsive Slideshow Styles */
         .slideshow-wrapper {
-            position: relative;
-            width: 100%;
-            height: 256px;
-            overflow: hidden;
-            margin-bottom: 2rem;
-        }
+  position: relative;
+  width: 100%;
+  min-height: 160px; /* ensures enough height for images */
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
 
-        .slideshow-container {
-            display: flex;
-            gap: 1rem;
-            position: absolute;
-            width: max-content;
-        }
 
-        .direction-ltr {
-            animation: slideLTR 60s linear infinite;
-            left: 0;
-        }
+.slideshow-container {
+  display: flex;
+  gap: 0.75rem;
+  position: absolute;
+  width: max-content;
+}
 
-        .direction-rtl {
-            animation: slideRTL 60s linear infinite;
-            right: 0;
-        }
+.direction-ltr {
+  animation: slideLTR 60s linear infinite;
+  left: 0;
+}
 
-        @keyframes slideLTR {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
+.direction-rtl {
+  animation: slideRTL 60s linear infinite;
+  right: 0;
+}
 
-        @keyframes slideRTL {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(50%); }
-        }
+@keyframes slideLTR {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
 
-        .slideshow-container img {
-            height: 256px;
-            width: auto;
-            object-fit: cover;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-        }
+@keyframes slideRTL {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(50%); }
+}
 
-        .slideshow-container img:hover {
-            transform: scale(1.05);
-        }
-        </style>
+.slideshow-container img {
+  width: 100%;
+  max-width: 220px;
+  max-height: 160px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+@media (min-width: 640px) {
+  .slideshow-container img {
+    max-width: 240px;
+    max-height: 200px;
+  }
+}
+
+.slideshow-container img:hover {
+  transform: scale(1.05);
+}
+</style>
         
-        <!-- Continuous Slideshows Section -->
-        <section class="py-16 overflow-hidden bg-white">
-            <!-- First Row - Left to Right -->
-            <div class="slideshow-wrapper mb-8">
-                <div class="slideshow-container direction-ltr">
-                    <img src="images/slideshow1/slide1.jpeg" alt="Slideshow 1">
-                    <img src="images/slideshow1/slide2.jpeg" alt="Slideshow 1">
-                    <img src="images/slideshow1/slide3.jpeg" alt="Slideshow 1">
-                    <img src="images/slideshow1/slide4.jpeg" alt="Slideshow 1">
-                    <img src="images/slideshow1/slide5.jpeg" alt="Slideshow 1">
-                    <!-- Duplicate set for seamless loop -->
-                    <img src="images/slideshow1/slide1.jpeg" alt="Slideshow 1">
-                    <img src="images/slideshow1/slide2.jpeg" alt="Slideshow 1">
-                    <img src="images/slideshow1/slide3.jpeg" alt="Slideshow 1">
-                    <img src="images/slideshow1/slide4.jpeg" alt="Slideshow 1">
-                    <img src="images/slideshow1/slide5.jpeg" alt="Slideshow 1">
-                </div>
-            </div>
-        
-            <!-- Second Row - Right to Left -->
-            <div class="slideshow-wrapper mb-8">
-                <div class="slideshow-container direction-rtl">
-                    <img src="images/slideshow2/slide1.jpeg" alt="Slideshow 2">
-                    <img src="images/slideshow2/slide2.jpeg" alt="Slideshow 2">
-                    <img src="images/slideshow2/slide3.jpeg" alt="Slideshow 2">
-                    <img src="images/slideshow2/slide4.jpeg" alt="Slideshow 2">
-                    <img src="images/slideshow2/slide5.jpeg" alt="Slideshow 2">
-                    <!-- Duplicate set for seamless loop -->
-                    <img src="images/slideshow2/slide1.jpeg" alt="Slideshow 2">
-                    <img src="images/slideshow2/slide2.jpeg" alt="Slideshow 2">
-                    <img src="images/slideshow2/slide3.jpeg" alt="Slideshow 2">
-                    <img src="images/slideshow2/slide4.jpeg" alt="Slideshow 2">
-                    <img src="images/slideshow2/slide5.jpeg" alt="Slideshow 2">
-                </div>
-            </div>
-        
-            <!-- Third Row - Left to Right -->
-            <div class="slideshow-wrapper">
-                <div class="slideshow-container direction-ltr">
-                    <img src="images/slideshow3/slide1.jpeg" alt="Slideshow 3">
-                    <img src="images/slideshow3/slide2.jpeg" alt="Slideshow 3">
-                    <img src="images/slideshow3/slide3.jpeg" alt="Slideshow 3">
-                    <img src="images/slideshow3/slide4.jpeg" alt="Slideshow 3">
-                    <img src="images/slideshow3/slide5.jpeg" alt="Slideshow 3">
-                    <!-- Duplicate set for seamless loop -->
-                    <img src="images/slideshow3/slide1.jpeg" alt="Slideshow 3">
-                    <img src="images/slideshow3/slide2.jpeg" alt="Slideshow 3">
-                    <img src="images/slideshow3/slide3.jpeg" alt="Slideshow 3">
-                    <img src="images/slideshow3/slide4.jpeg" alt="Slideshow 3">
-                    <img src="images/slideshow3/slide5.jpeg" alt="Slideshow 3">
-                </div>
-            </div>
-        </section>
+<!-- Slideshow Section -->
+<section class="py-16 overflow-hidden bg-white">
+    <!-- First Row - Left to Right -->
+    <div class="slideshow-wrapper mb-8">
+      <div class="slideshow-container direction-ltr">
+        <img src="images/slideshow1/slide1.jpeg" alt="Slideshow 1" />
+        <img src="images/slideshow1/slide2.jpeg" alt="Slideshow 1" />
+        <img src="images/slideshow1/slide3.jpeg" alt="Slideshow 1" />
+        <img src="images/slideshow1/slide4.jpeg" alt="Slideshow 1" />
+        <img src="images/slideshow1/slide5.jpeg" alt="Slideshow 1" />
+        <!-- Duplicate for seamless loop -->
+        <img src="images/slideshow1/slide1.jpeg" alt="Slideshow 1" />
+        <img src="images/slideshow1/slide2.jpeg" alt="Slideshow 1" />
+        <img src="images/slideshow1/slide3.jpeg" alt="Slideshow 1" />
+        <img src="images/slideshow1/slide4.jpeg" alt="Slideshow 1" />
+        <img src="images/slideshow1/slide5.jpeg" alt="Slideshow 1" />
+      </div>
+    </div>
+  
+    <!-- Second Row - Right to Left -->
+    <div class="slideshow-wrapper mb-8">
+      <div class="slideshow-container direction-rtl">
+        <img src="images/slideshow2/slide1.jpeg" alt="Slideshow 2" />
+        <img src="images/slideshow2/slide2.jpeg" alt="Slideshow 2" />
+        <img src="images/slideshow2/slide3.jpeg" alt="Slideshow 2" />
+        <img src="images/slideshow2/slide4.jpeg" alt="Slideshow 2" />
+        <img src="images/slideshow2/slide5.jpeg" alt="Slideshow 2" />
+        <!-- Duplicate for seamless loop -->
+        <img src="images/slideshow2/slide1.jpeg" alt="Slideshow 2" />
+        <img src="images/slideshow2/slide2.jpeg" alt="Slideshow 2" />
+        <img src="images/slideshow2/slide3.jpeg" alt="Slideshow 2" />
+        <img src="images/slideshow2/slide4.jpeg" alt="Slideshow 2" />
+        <img src="images/slideshow2/slide5.jpeg" alt="Slideshow 2" />
+      </div>
+    </div>
+  
+    <!-- Third Row - Left to Right -->
+    <div class="slideshow-wrapper">
+      <div class="slideshow-container direction-ltr">
+        <img src="images/slideshow3/slide1.jpeg" alt="Slideshow 3" />
+        <img src="images/slideshow3/slide2.jpeg" alt="Slideshow 3" />
+        <img src="images/slideshow3/slide3.jpeg" alt="Slideshow 3" />
+        <img src="images/slideshow3/slide4.jpeg" alt="Slideshow 3" />
+        <img src="images/slideshow3/slide5.jpeg" alt="Slideshow 3" />
+        <!-- Duplicate for seamless loop -->
+        <img src="images/slideshow3/slide1.jpeg" alt="Slideshow 3" />
+        <img src="images/slideshow3/slide2.jpeg" alt="Slideshow 3" />
+        <img src="images/slideshow3/slide3.jpeg" alt="Slideshow 3" />
+        <img src="images/slideshow3/slide4.jpeg" alt="Slideshow 3" />
+        <img src="images/slideshow3/slide5.jpeg" alt="Slideshow 3" />
+      </div>
+    </div>
+  </section>
+  
 
     <!-- Footer Section -->
     <footer class="bg-[#fffff0] py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12">
@@ -622,12 +633,29 @@
             <!-- Contact Info -->
             <div class="reveal">
                 <h4 class="text-xl font-semibold text-black mb-4">Contact Us</h4>
-                <ul class="space-y-2">
-                    <li class="text-black/70 flex items-center"><i class="fas fa-map-marker-alt text-black mr-2"></i>Mumbai, India</li>
-                    <li class="text-black/70 flex items-center"><i class="fas fa-phone text-black mr-2"></i>+91 9082557453</li>
-                    <li class="text-black/70 flex items-center"><i class="fas fa-envelope text-black mr-2"></i>dignityeventmanagement18@gmail.com</li>
+                <ul class="space-y-4">
+                  
+                  <!-- Location -->
+                  <li class="flex items-start sm:items-center gap-3 flex-wrap text-black/70">
+                    <i class="fas fa-map-marker-alt text-black mt-1 sm:mt-0"></i>
+                    <span>Mumbai, India</span>
+                  </li>
+              
+                  <!-- Phone -->
+                  <li class="flex items-start sm:items-center gap-3 flex-wrap text-black/70">
+                    <i class="fas fa-phone text-black mt-1 sm:mt-0"></i>
+                    <span>+91 9082557453</span>
+                  </li>
+              
+                  <li class="flex items-center gap-2 text-black/70">
+                    <i class="fas fa-envelope text-black"></i>
+                    <span class="inline break-words text-sm">
+                      dignityeventmanagement18@gmail.com
+                    </span>
+                  </li>                  
                 </ul>
-            </div>
+              </div>
+              
         </div>
         
         <!-- Copyright -->
@@ -635,6 +663,7 @@
             <p class="text-center text-[#314b7e]">&copy; 2024 Dignity Event. All rights reserved.</p>
         </div>
     </footer>
+
     <script>
         // Reveal Animation
         function reveal() {
