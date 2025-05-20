@@ -6,7 +6,7 @@
     <title>Our Services | Dignity Event</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato:wght@400&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -15,8 +15,13 @@
             cursor: default;
         }
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
             color: #000000;
+        }
+        .subheading {
+            font-family: 'Lato', sans-serif;
+            font-weight: 400;
         }
     </style>
 </head>
@@ -181,9 +186,9 @@
         </button>
 
         <div class="navbar-section">
-            <a href="home.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Home</a>
-            <a href="about.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">About</a>
-            <a href="services.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Services</a>
+            <a href="home.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300 subheading">Home</a>
+            <a href="about.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300 subheading">About</a>
+            <a href="services.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300 subheading">Services</a>
         </div>
 
         <div class="logo-container">
@@ -193,21 +198,22 @@
         </div>
 
         <div class="navbar-section">
-            <a href="portfolio.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Portfolio</a>
-            <a href="home.html#testimonials" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Testimonials</a>
-            <a href="home.html#contact" class="text-black font-bold hover:text-gray-700 transition-colors duration-300">Contact</a>
+            <a href="portfolio.html" class="text-black font-bold hover:text-gray-700 transition-colors duration-300 subheading">Portfolio</a>
+            <a href="home.html#testimonials" class="text-black font-bold hover:text-gray-700 transition-colors duration-300 subheading">Testimonials</a>
+            <a href="home.html#contact" class="text-black font-bold hover:text-gray-700 transition-colors duration-300 subheading">Contact</a>
         </div>
 
+        <!-- Mobile Menu -->
         <div class="mobile-menu">
-            <button class="close-menu" aria-label="Close menu">
+            <a href="home.html" class="subheading">Home</a>
+            <a href="about.html" class="subheading">About</a>
+            <a href="services.html" class="subheading">Services</a>
+            <a href="portfolio.html" class="subheading">Portfolio</a>
+            <a href="home.html#testimonials" class="subheading">Testimonials</a>
+            <a href="home.html#contact" class="subheading">Contact</a>
+            <button class="close-menu">
                 <i class="fas fa-times"></i>
             </button>
-            <a href="home.html" class="text-black font-bold">Home</a>
-            <a href="about.html" class="text-black font-bold">About</a>
-            <a href="services.html" class="text-black font-bold">Services</a>
-            <a href="portfolio.html" class="text-black font-bold">Gallery</a>
-            <a href="home.html#testimonials" class="text-black font-bold">Testimonials</a>
-            <a href="home.html#contact" class="text-black font-bold">Contact</a>
         </div>
     </nav>
 
@@ -248,54 +254,54 @@
         <div class="max-w-6xl mx-auto text-center">
             <h1 class="text-4xl md:text-5xl font-bold mb-6 text-black reveal">Our Services</h1>
             <div class="w-24 h-1 bg-black mx-auto mb-8 reveal divider"></div>
-            <p class="text-lg text-black/70 max-w-3xl mx-auto reveal">Discover our comprehensive range of event management services designed to make your special occasions truly memorable.</p>
+            <p class="text-lg text-black/70 max-w-3xl mx-auto reveal subheading">Discover our comprehensive range of event management services designed to make your special occasions truly memorable.</p>
         </div>
     </section>
 
 <!-- Detailed Services Section -->
 <section class="py-15 px-6 md:px-12 bg-white">
     <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-12 bg-[#fffff0]">
-                <!-- Corporate & Brand Events -->
-                <div class="bg-white border-2 border-black backdrop-blur-md rounded-xl p-8 service-card reveal">
-                    <div class="text-black mb-6">
-                        <i class="fas fa-briefcase text-5xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-4 text-black">Corporate & Brand Events</h3>
-                    <p class="text-black/70 mb-6">Professional event management for corporate gatherings, brand activations, and business functions.</p>
-                    <div class="space-y-4">
-                        <ul class="text-black/70 space-y-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-black mt-1 mr-3"></i>
-                                <span>Conferences  Annual </span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-black mt-1 mr-3"></i>
-                                <span>Corporate Events </span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-black mt-1 mr-3"></i>
-                                <span>Product Launches</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-black mt-1 mr-3"></i>
-                                <span>Award Ceremonies</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-black mt-1 mr-3"></i>
-                                <span>Press & Media Events</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+        <!-- Corporate & Brand Events -->
+        <div class="bg-white border-2 border-black backdrop-blur-md rounded-xl p-8 service-card reveal">
+            <div class="text-black mb-6">
+                <i class="fas fa-briefcase text-5xl"></i>
+            </div>
+            <h3 class="text-2xl font-semibold mb-4 text-black">Corporate & Brand Events</h3>
+            <p class="text-black/70 mb-6 subheading">Professional event management for corporate gatherings, brand activations, and business functions.</p>
+            <div class="space-y-4">
+                <ul class="text-black/70 space-y-3 subheading">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Conferences Annual</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Corporate Events</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Product Launches</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Award Ceremonies</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-black mt-1 mr-3"></i>
+                        <span>Press & Media Events</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
         <!-- Wedding & Social Events -->
         <div class="bg-white border-2 border-black backdrop-blur-md rounded-xl p-8 service-card reveal">
             <div class="text-black mb-6">
                 <i class="fas fa-ring text-5xl"></i>
             </div>
             <h3 class="text-2xl font-semibold mb-4 text-black">Wedding & Social Events</h3>
-            <p class="text-black/70 mb-6">Comprehensive wedding planning services for every aspect of your special celebration.</p>
+            <p class="text-black/70 mb-6 subheading">Comprehensive wedding planning services for every aspect of your special celebration.</p>
             <div class="space-y-4">
-                <ul class="text-black/70 space-y-3">
+                <ul class="text-black/70 space-y-3 subheading">
                     <li class="flex items-start">
                         <i class="fas fa-check text-black mt-1 mr-3"></i>
                         <span>Destination Wedding</span>
@@ -322,9 +328,9 @@
                 <i class="fas fa-paint-brush text-5xl"></i>
             </div>
             <h3 class="text-2xl font-semibold mb-4 text-black">Decor & Setup</h3>
-            <p class="text-black/70 mb-6">Transform your venue with our elegant and customized decoration services.</p>
+            <p class="text-black/70 mb-6 subheading">Transform your venue with our elegant and customized decoration services.</p>
             <div class="space-y-4">
-                <ul class="text-black/70 space-y-3">
+                <ul class="text-black/70 space-y-3 subheading">
                     <li class="flex items-start">
                         <i class="fas fa-check text-black mt-1 mr-3"></i>
                         <span>Theme Decor</span>
@@ -351,9 +357,9 @@
                 <i class="fas fa-theater-masks text-5xl"></i>
             </div>
             <h3 class="text-2xl font-semibold mb-4 text-black">Entertainment & Hospitality</h3>
-            <p class="text-black/70 mb-6">Keep your guests entertained with our diverse range of entertainment options.</p>
+            <p class="text-black/70 mb-6 subheading">Keep your guests entertained with our diverse range of entertainment options.</p>
             <div class="space-y-4">
-                <ul class="text-black/70 space-y-3">
+                <ul class="text-black/70 space-y-3 subheading">
                     <li class="flex items-start">
                         <i class="fas fa-check text-black mt-1 mr-3"></i>
                         <span>DJ Sound</span>
@@ -384,9 +390,9 @@
                 <i class="fas fa-utensils text-5xl"></i>
             </div>
             <h3 class="text-2xl font-semibold mb-4 text-black">Catering</h3>
-            <p class="text-black/70 mb-6">Delight your guests with exquisite culinary experiences and professional service.</p>
+            <p class="text-black/70 mb-6 subheading">Delight your guests with exquisite culinary experiences and professional service.</p>
             <div class="space-y-4">
-                <ul class="text-black/70 space-y-3">
+                <ul class="text-black/70 space-y-3 subheading">
                     <li class="flex items-start">
                         <i class="fas fa-check text-black mt-1 mr-3"></i>
                         <span>Multi Cuisine Delights</span>
@@ -397,11 +403,11 @@
                     </li>
                     <li class="flex items-start">
                         <i class="fas fa-check text-black mt-1 mr-3"></i>
-                        <span>Buffet Setup</span>
+                        <span>Themed Food Stations</span>
                     </li>
                     <li class="flex items-start">
                         <i class="fas fa-check text-black mt-1 mr-3"></i>
-                        <span>Mocktails Hi-Tea</span>
+                        <span>Professional Service</span>
                     </li>
                 </ul>
             </div>
@@ -566,7 +572,7 @@
             <!-- Company Info -->
             <div class="reveal">
                 <h3 class="text-2xl font-bold text-black mb-4">Dignity Event</h3>
-                <p class="text-black/70 mb-4">Creating extraordinary experiences that leave lasting impressions.</p>
+                <p class="text-black/70 mb-4 subheading">Creating extraordinary experiences that leave lasting impressions.</p>
                 <div class="flex space-x-4">
                     <a href="https://www.facebook.com/people/Dignityeventmanagement/61575120662119/" class="text-black hover:text-black/70 transition" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-facebook-f"></i>
@@ -589,7 +595,7 @@
             <!-- Quick Links -->
             <div class="reveal">
                 <h4 class="text-xl font-semibold text-black mb-4">Quick Links</h4>
-                <ul class="space-y-2">
+                <ul class="space-y-2 subheading">
                     <li><a href="home.html" class="text-black/70 hover:text-black transition">Home</a></li>
                     <li><a href="about.html" class="text-black/70 hover:text-black transition">About Us</a></li>
                     <li><a href="services.html" class="text-black/70 hover:text-black transition">Services</a></li>
@@ -600,7 +606,7 @@
             <!-- Services -->
             <div class="reveal">
                 <h4 class="text-xl font-semibold text-black mb-4">Our Services</h4>
-                <ul class="space-y-2">
+                <ul class="space-y-2 subheading">
                     <li><a href="services.html" class="text-black/70 hover:text-black transition">Wedding & Social Events</a></li>
                     <li><a href="services.html" class="text-black/70 hover:text-black transition">Decor & Setup</a></li>
                     <li><a href="services.html" class="text-black/70 hover:text-black transition">Entertainment & Hospitality</a></li>
@@ -612,7 +618,7 @@
             <!-- Contact Info -->
             <div class="reveal">
                 <h4 class="text-xl font-semibold text-black mb-4">Contact Us</h4>
-                <ul class="space-y-2">
+                <ul class="space-y-2 subheading">
                     <li class="text-black/70 flex items-center"><i class="fas fa-map-marker-alt text-black mr-2"></i>Mumbai, India</li>
                     <li class="text-black/70 flex items-center"><i class="fas fa-phone text-black mr-2"></i>+91 9082557453</li>
                     <li class="text-black/70 flex items-center"><i class="fas fa-envelope text-black mr-2"></i>dignityeventmanagement18@gmail.com</li>
@@ -622,7 +628,7 @@
         
         <!-- Copyright -->
         <div class="max-w-6xl mx-auto mt-12 pt-8 border-t border-[#b75004]/20">
-            <p class="text-center text-[#314b7e]">&copy; 2024 Dignity Event. All rights reserved.</p>
+            <p class="text-center text-[#314b7e] subheading">&copy; 2024 Dignity Event. All rights reserved.</p>
         </div>
     </footer>
     <script>
