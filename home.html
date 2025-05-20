@@ -641,67 +641,86 @@
         }
     </style>
     <!-- Contact Section -->
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 md:px-12 bg-[#fffff0]">
-        <div class="max-w-6xl mx-auto">
-            <h2 class="reveal text-3xl md:text-4xl font-bold mb-4 text-black text-center">Contact Us</h2>
-            <div class="reveal w-24 h-1 bg-black mx-auto mb-12"></div>
-            <div class="grid md:grid-cols-2 gap-12">
-                <!-- Contact Form -->
-                <div class="reveal">
-                    <form action="https://api.web3forms.com/submit" method="POST" class="contact-form space-y-6 bg-white p-8 rounded-xl border-2 border-black/10 hover:border-black/30 transition-all duration-300 shadow-lg hover:shadow-xl">
-                        <input type="hidden" name="access_key" value="196d697e-0bf5-4883-90ab-12f645049bc5">
-                        <input type="hidden" name="redirect" value="thank-you.html">
-                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-                        <div>
-                            <label class="block text-black font-semibold mb-2 tracking-wide" for="name">Name</label>
-                            <input type="text" name="name" id="name" required class="w-full px-4 py-3 rounded-lg bg-[#fffff0] border-2 border-black/10 text-black placeholder-black/50 focus:border-black focus:outline-none transition-all duration-300 hover:border-black/30" placeholder="Your Name">
-                        </div>
-                        <div>
-                            <label class="block text-black font-semibold mb-2 tracking-wide" for="email">Email</label>
-                            <input type="email" name="email" id="email" required class="w-full px-4 py-3 rounded-lg bg-[#fffff0] border-2 border-black/10 text-black placeholder-black/50 focus:border-black focus:outline-none transition-all duration-300 hover:border-black/30" placeholder="your@email.com">
-                        </div>
-                        <div>
-                            <label class="block text-black font-semibold mb-2 tracking-wide" for="message">Message</label>
-                            <textarea name="message" id="message" rows="4" required class="w-full px-4 py-3 rounded-lg bg-[#fffff0] border-2 border-black/10 text-black placeholder-black/50 focus:border-black focus:outline-none transition-all duration-300 hover:border-black/30" placeholder="Your message here..."></textarea>
-                        </div>
-                        <button type="submit" class="w-full py-4 px-6 rounded-lg bg-black text-white font-bold hover:bg-black/90 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-    
-                <!-- Contact Info -->
-                <div class="reveal space-y-8">
-
-                    <div class="contact-card flex items-center space-x-4 bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
-                        <div class="text-black">
-                            <i class="fas fa-phone text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-black font-semibold">Phone</h3>
-                            <p class="text-black/70">+91 9082557453</p>
-                        </div>
-                    </div>
-                    <div class="contact-card flex items-center space-x-4 bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
-                        <div class="text-black">
-                            <i class="fas fa-envelope text-2xl"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-black font-semibold">Email</h3>
-                            <p class="text-black/70">dignityeventmanagement18@gmail.com</p>
-                        </div>
-                        
-                    </div>
-                    
-                <div class="map-container w-full h-[950px] rounded-lg overflow-hidden shadow-lg">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.072086047286!2d72.86635517418952!3d19.27923114556298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b1a80a55001f%3A0x20de23fbfb48f177!2sDignity%20Event%20Management!5e0!3m2!1sen!2sin!4v1745332677362!5m2!1sen!2sin" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-
-                </div>
+<!-- Contact Section -->
+<section id="contact" class="py-20 px-4 sm:px-6 md:px-12 bg-[#fffff0]">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-center text-3xl sm:text-4xl md:text-5xl font-bold mb-4 text-black">Contact Us</h2>
+      <div class="w-24 h-1 bg-black mx-auto mb-12"></div>
+  
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        
+        <!-- Contact Form -->
+        <form action="https://api.web3forms.com/submit" method="POST"
+          class="w-full max-w-xl mx-auto contact-form space-y-6 bg-white p-8 rounded-xl border-2 border-black/10 hover:border-black/30 transition-all duration-300 shadow-lg hover:shadow-xl">
+          
+          <input type="hidden" name="access_key" value="196d697e-0bf5-4883-90ab-12f645049bc5">
+          <input type="hidden" name="redirect" value="thank-you.html">
+          <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+  
+          <div>
+            <label class="block text-black font-semibold mb-2 tracking-wide" for="name">Name</label>
+            <input type="text" name="name" id="name" required
+              class="w-full px-4 py-3 rounded-lg bg-[#fffff0] border-2 border-black/10 text-black placeholder-black/50 focus:border-black focus:outline-none transition-all duration-300 hover:border-black/30"
+              placeholder="Your Name">
+          </div>
+  
+          <div>
+            <label class="block text-black font-semibold mb-2 tracking-wide" for="email">Email</label>
+            <input type="email" name="email" id="email" required
+              class="w-full px-4 py-3 rounded-lg bg-[#fffff0] border-2 border-black/10 text-black placeholder-black/50 focus:border-black focus:outline-none transition-all duration-300 hover:border-black/30"
+              placeholder="your@email.com">
+          </div>
+  
+          <div>
+            <label class="block text-black font-semibold mb-2 tracking-wide" for="message">Message</label>
+            <textarea name="message" id="message" rows="4" required
+              class="w-full px-4 py-3 rounded-lg bg-[#fffff0] border-2 border-black/10 text-black placeholder-black/50 focus:border-black focus:outline-none transition-all duration-300 hover:border-black/30"
+              placeholder="Your message here..."></textarea>
+          </div>
+  
+          <button type="submit"
+            class="w-full py-4 px-6 rounded-lg bg-black text-white font-bold hover:bg-black/90 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg">
+            Send Message
+          </button>
+        </form>
+  
+        <!-- Contact Info + Map -->
+        <div class="space-y-8 w-full max-w-xl mx-auto">
+          <div class="contact-card flex items-center space-x-4 bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+            <div class="text-black">
+              <i class="fas fa-phone text-2xl"></i>
             </div>
+            <div>
+              <h3 class="text-black font-semibold">Phone</h3>
+              <p class="text-black/70">+91 9082557453</p>
+            </div>
+          </div>
+  
+          <div class="contact-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 w-full">
+            <!-- Top Row: Icon + Label -->
+            <div class="flex items-center space-x-4 mb-2">
+              <div class="text-black">
+                <i class="fas fa-envelope text-2xl"></i>
+              </div>
+              <h3 class="text-black font-semibold">Email</h3>
+            </div>
+            <!-- Bottom Row: Email Text -->
+            <p class="text-black/70 pl-10 break-words">dignityeventmanagement18@gmail.com</p>
+          </div>
+          
+          
+  
+          <div class="map-container w-full h-64 sm:h-96 md:h-[600px] rounded-lg overflow-hidden shadow-lg">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.072086047286!2d72.86635517418952!3d19.27923114556298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b1a80a55001f%3A0x20de23fbfb48f177!2sDignity%20Event%20Management!5e0!3m2!1sen!2sin!4v1745332677362!5m2!1sen!2sin"
+              width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
+  
 
 
     <!-- Footer Section -->
@@ -759,12 +778,29 @@
             <!-- Contact Info -->
             <div class="reveal">
                 <h4 class="text-xl font-semibold text-black mb-4">Contact Us</h4>
-                <ul class="space-y-2">
-                    <li class="text-black/70 flex items-center"><i class="fas fa-map-marker-alt text-black mr-2"></i>Mumbai, India</li>
-                    <li class="text-black/70 flex items-center"><i class="fas fa-phone text-black mr-2"></i>+91 9082557453</li>
-                    <li class="text-black/70 flex items-center"><i class="fas fa-envelope text-black mr-2"></i>dignityeventmanagement18@gmail.com</li>
+                <ul class="space-y-4">
+                  
+                  <!-- Location -->
+                  <li class="flex items-start sm:items-center gap-3 flex-wrap text-black/70">
+                    <i class="fas fa-map-marker-alt text-black mt-1 sm:mt-0"></i>
+                    <span>Mumbai, India</span>
+                  </li>
+              
+                  <!-- Phone -->
+                  <li class="flex items-start sm:items-center gap-3 flex-wrap text-black/70">
+                    <i class="fas fa-phone text-black mt-1 sm:mt-0"></i>
+                    <span>+91 9082557453</span>
+                  </li>
+              
+                  <li class="flex items-center gap-2 text-black/70">
+                    <i class="fas fa-envelope text-black"></i>
+                    <span class="inline break-words text-sm">
+                      dignityeventmanagement18@gmail.com
+                    </span>
+                  </li>                  
                 </ul>
-            </div>
+              </div>
+              
         </div>
         
         <!-- Copyright -->
