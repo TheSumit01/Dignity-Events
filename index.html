@@ -1,10 +1,2644 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta http-equiv="refresh" content="0; url=home.html">
-  <title>Redirecting...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dignity Event | Showcase</title>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Lato&family=Roboto:wght@400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+
+    <!-- Utility classes (Tailwind CDN for quick responsive styling) -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-  If you are not redirected automatically, follow this <a href="home.html">link</a>.
+<body class="min-h-screen">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-body);
+            background-color: var(--bg);
+            color: var(--text);
+        }
+
+        :root {
+            /* Elegant Minimalist palette */
+            --sapphire: #3B518D;
+            --sand: #F4EFEA;
+            --gold: #B58E58;
+            --cloud: #E2E6EF;
+            --soft-black: #1A1A1A;
+
+            --bg: #ffffff;
+            --surface: #ffffff;
+            --surface-muted: var(--sand);
+            --primary: var(--sapphire);
+            --primary-dark: #2f406f;
+            --accent: var(--gold);
+            --text: var(--soft-black);
+            --muted: rgba(26, 26, 26, 0.62);
+            --border: rgba(181, 142, 88, 0.45);
+            --card: var(--cloud);
+            --sand-rgb: 244, 239, 234;
+            --sapphire-rgb: 59, 81, 141;
+
+            /* Typography */
+            --font-body: 'Roboto', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            --font-heading: 'Playfair Display', 'Times New Roman', serif;
+            --font-ui: 'Montserrat', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        /* Theme utility helpers */
+        .theme-bg { background-color: var(--bg); }
+        .theme-surface { background-color: var(--surface); }
+        .theme-surface-muted { background-color: var(--surface-muted); }
+        .theme-card { background-color: var(--card); }
+        .theme-text { color: var(--text); }
+        .theme-muted { color: var(--muted); }
+        .theme-primary-text { color: var(--primary); }
+        .theme-accent-text { color: var(--accent); }
+        .theme-accent-line { background-color: var(--accent); }
+
+        .font-lato { font-family: var(--font-body); }
+        .font-montserrat { font-family: var(--font-ui); }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 16px;
+            background-color: rgba(var(--sand-rgb), 0.88);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        @media (min-width: 640px) {
+            .navbar {
+                padding: 20px 40px;
+            }
+        }
+
+        .navbar.scrolled {
+            background-color: rgba(var(--sand-rgb), 0.92);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.07);
+        }
+        .navbar-section {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 18px;
+            margin-left: auto;
+            flex-wrap: wrap;
+            font-family: var(--font-ui);
+        }
+
+        @media (min-width: 768px) {
+            .navbar-section {
+                display: flex;
+            }
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            transition: color 160ms ease, transform 160ms ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 640px) {
+            .navbar {
+                padding: 10px 12px;
+            }
+
+            .logo-container img {
+                height: 34px;
+            }
+
+            /* Hide desktop link row; show hamburger instead */
+            .navbar-section {
+                display: none;
+            }
+
+            .navbar.menu-open .menu-toggle {
+                display: none;
+            }
+        }
+
+        .logo-container {
+            text-align: left;
+            padding: 0;
+            z-index: 997;
+        }
+
+        .logo-container img {
+            height: 40px;
+            width: auto;
+            transition: transform 0.3s;
+        }
+
+        @media (min-width: 640px) {
+            .logo-container img {
+                height: 70px;
+            }
+        }
+
+        .logo-container img:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-toggle {
+            font-size: 2rem;
+            display: block;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1000;
+            margin-left: auto;
+        }
+
+        @media (min-width: 768px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(var(--sand-rgb), 0.98);
+            backdrop-filter: blur(10px);
+            padding: 80px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            transition: left 0.3s ease;
+            z-index: 998;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu a {
+            font-size: 1.5rem;
+            text-align: center;
+            padding: 12px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .mobile-menu a:hover {
+            background-color: var(--card);
+            transform: translateY(-2px);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+            color: var(--text);
+            font-size: 1.5rem;
+            display: none;
+        }
+
+        .mobile-menu.active .close-menu {
+            display: block;
+        }
+
+        /* Hero slideshow */
+        .hero-slideshow {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            max-height: 600px;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        .hero-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 32px 40px;
+            max-width: 40%;
+            min-width: 260px;
+        }
+
+        .hero-overlay h2 {
+            font-size: 1.8rem;
+            line-height: 1.3;
+            margin: 0 0 8px;
+            color: var(--text);
+        }
+
+        .hero-overlay h2 em {
+            font-style: italic;
+        }
+
+        .hero-overlay p {
+            margin: 0;
+            font-size: 0.9rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .hero-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            cursor: pointer;
+            font-size: 1.4rem;
+        }
+
+        .hero-arrow.left {
+            left: 16px;
+        }
+
+        .hero-arrow.right {
+            right: 16px;
+        }
+
+        /* Services slider section */
+        .services-showcase {
+            padding: 60px 24px;
+            background-color: var(--surface-muted);
+            color: var(--text);
+        }
+
+        .services-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            gap: 40px;
+            align-items: stretch;
+        }
+
+        .services-media {
+            position: relative;
+            flex: 1 1 55%;
+            overflow: hidden;
+        }
+
+        .services-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .services-slide.active {
+            opacity: 1 !important;
+        }
+
+        .services-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .services-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            border: none;
+            background: rgba(0, 0, 0, 0.45);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.3rem;
+        }
+
+        .services-arrow.left {
+            left: 10px;
+        }
+
+        .services-arrow.right {
+            right: 10px;
+        }
+
+        .services-content {
+            flex: 1 1 45%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .services-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 24px;
+        }
+
+        .services-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: var(--muted);
+        }
+
+        .services-list li::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background-color: var(--cloud);
+            flex-shrink: 0;
+        }
+
+        .services-list li.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .services-list li.active::before {
+            background-color: var(--accent);
+        }
+
+        .services-divider {
+            width: 60px;
+            height: 2px;
+            background-color: var(--accent);
+            margin-bottom: 18px;
+        }
+
+        .services-description {
+            font-size: 0.98rem;
+            line-height: 1.7;
+            color: var(--muted);
+        }
+
+        /* Section heading between About & Services */
+        .about-services-heading-section {
+            background-color: var(--surface-muted);
+            padding: 40px 16px 10px;
+        }
+
+        .about-services-heading-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-services-heading-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--primary);
+            margin: 0;
+        }
+
+        /* Video background section */
+        .video-bg-section {
+            position: relative;
+            min-height: 56vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: var(--primary-dark);
+        }
+
+        .video-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transform: scale(1.02);
+        }
+
+        .video-bg-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.45)),
+                radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.65));
+        }
+
+        .video-bg-inner {
+            position: relative;
+            z-index: 1;
+            padding: 70px 16px;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .video-bg-title {
+            margin: 0;
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            line-height: 1.15;
+            color: rgba(255, 255, 255, 0.92);
+            letter-spacing: -0.01em;
+        }
+
+        .video-bg-count {
+            margin: 14px 0 0;
+            font-family: var(--font-ui);
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.02rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .video-bg-categories {
+            margin: 22px auto 0;
+            max-width: 920px;
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 0.78rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 640px) {
+            .video-bg-inner {
+                padding: 54px 14px;
+            }
+
+            .video-bg-title {
+                font-size: 1.65rem;
+            }
+
+            .video-bg-count {
+                font-size: 0.9rem;
+            }
+
+            .video-bg-categories {
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Feature cards section */
+        .feature-grid-section {
+            padding: 64px 16px;
+            background-color: var(--bg);
+        }
+
+        .feature-grid-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .feature-grid-heading {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .feature-grid-subtitle {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--muted);
+            margin-bottom: 32px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .feature-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        .feature-card {
+            background-color: var(--surface);
+            border-radius: 16px;
+            padding: 20px 22px;
+            box-shadow: 0 10px 25px rgba(26, 26, 26, 0.06);
+            border: 1px solid var(--border);
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                        transform 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                        box-shadow 0.25s ease, transform 0.25s ease;
+        }
+
+        .feature-card.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            background-color: var(--card);
+            box-shadow: 0 18px 45px rgba(59, 81, 141, 0.12);
+        }
+
+        .feature-card-title {
+            font-family: var(--font-ui);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .feature-card-text {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        /* Process navigation + steps */
+        .process-nav-section {
+            background-color: var(--surface-muted);
+            padding: 48px 16px 32px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .process-nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .process-nav-intro {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .process-nav-intro h2 {
+            font-family: var(--font-heading);
+            font-size: 1.9rem;
+            color: var(--primary);
+            margin: 0 0 8px;
+        }
+
+        .process-nav-intro p {
+            margin: 0;
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        .process-nav-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .process-card {
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 16px 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: none;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+            transition: background-color 0.2s ease, box-shadow 0.2s ease,
+                        transform 0.2s ease, color 0.2s ease;
+        }
+
+        .process-card:hover,
+        .process-card.active {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 16px 28px rgba(15, 23, 42, 0.28);
+        }
+
+        .process-card span {
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0.9;
+            margin-bottom: 4px;
+        }
+
+        .process-steps-section {
+            background-color: var(--surface-muted);
+            padding: 40px 16px 24px;
+        }
+
+        .process-steps-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .process-step {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+            gap: 36px;
+            padding: 32px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .process-step:last-of-type {
+            border-bottom: none;
+        }
+
+        .process-step-content h3 {
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .process-step-content h2 {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            letter-spacing: 0.06em;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+
+        .process-step-content .underline {
+            width: 70px;
+            height: 2px;
+            background-color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .process-step-content p {
+            font-size: 0.97rem;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        .process-step-media {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 18px 40px rgba(59, 81, 141, 0.2);
+            background-color: var(--text);
+        }
+
+        .process-step-media img,
+        .process-step-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .process-step:nth-child(even) {
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+        }
+
+        @media (max-width: 900px) {
+            .process-nav-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .process-step {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .process-step:nth-child(even) {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .process-nav-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .process-nav-section {
+                padding-top: 36px;
+                padding-bottom: 24px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .feature-card {
+                transition: none;
+                opacity: 1;
+                transform: none;
+            }
+
+            .feature-card.in-view,
+            .feature-card:hover {
+                transform: none;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+            }
+        }
+
+        /* Meet the team section */
+        .team-section {
+            background-color: var(--surface-muted);
+            padding: 60px 16px 70px;
+        }
+
+        .team-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
+            gap: 40px;
+            align-items: center;
+        }
+
+        .team-copy h2 {
+            font-family: var(--font-heading);
+            font-size: 2.3rem;
+            color: var(--primary);
+            margin-bottom: 18px;
+        }
+
+        .team-copy .team-underline {
+            width: 90px;
+            height: 2px;
+            background-color: var(--accent);
+            margin: 18px 0 22px;
+        }
+
+        .team-copy p {
+            font-size: 0.98rem;
+            line-height: 1.8;
+            color: var(--muted);
+            max-width: 420px;
+        }
+
+        .team-profile {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .team-photo {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(59, 81, 141, 0.22);
+            background-color: var(--text);
+        }
+
+        .team-photo img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .team-bio {
+            background-color: var(--surface);
+            padding: 20px 22px 18px;
+            border-radius: 10px;
+            box-shadow: 0 14px 30px rgba(59, 81, 141, 0.1);
+            border: 1px solid var(--border);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--muted);
+        }
+
+        .team-bio strong {
+            display: block;
+            font-family: var(--font-ui);
+            font-size: 0.86rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            margin-top: 16px;
+            color: var(--text);
+        }
+
+        .team-bio span {
+            display: block;
+            font-size: 0.8rem;
+            text-transform: lowercase;
+            color: var(--muted);
+        }
+
+        @media (max-width: 900px) {
+            .team-inner {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 32px;
+            }
+
+            .team-profile {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .team-section {
+                padding: 46px 16px 56px;
+            }
+
+            .team-copy h2 {
+                font-size: 1.9rem;
+            }
+        }
+
+        /* Featured corporate clients strip */
+        .clients-section {
+            background-color: var(--surface-muted);
+            padding: 54px 16px;
+            border-top: 1px solid var(--border);
+        }
+
+        .clients-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .clients-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            color: var(--primary);
+            font-size: 2.35rem;
+            margin: 0 0 34px;
+        }
+
+        .clients-grid {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            gap: 22px;
+            align-items: center;
+        }
+
+        .client-logo-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            min-height: 92px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+        }
+
+        .client-logo-card img {
+            display: block;
+            max-width: 100%;
+            max-height: 62px;
+            object-fit: contain;
+            filter: saturate(0.96);
+        }
+
+        @media (max-width: 1024px) {
+            .clients-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 640px) {
+            .clients-section {
+                padding: 44px 14px;
+            }
+
+            .clients-title {
+                font-size: 1.9rem;
+                margin-bottom: 24px;
+            }
+
+            .clients-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 14px;
+            }
+
+            .client-logo-card {
+                min-height: 84px;
+            }
+        }
+
+        /* Contact + map ("Let's do something awesome together") */
+        .contact-section {
+            background-color: var(--surface-muted);
+            padding: 70px 16px 80px;
+            border-top: 1px solid var(--border);
+        }
+
+        .contact-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .contact-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 2.35rem;
+            color: var(--primary);
+            margin: 0 0 44px;
+        }
+
+        /* Contact hero text (cover-style) + footer */
+        .contact-hero {
+            background-color: var(--surface-muted);
+            padding: 54px 16px 40px;
+        }
+
+        .contact-hero-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+            gap: 40px;
+            align-items: start;
+        }
+
+        .contact-hero-title {
+            font-family: var(--font-heading);
+            font-size: 2.55rem;
+            line-height: 1.18;
+            letter-spacing: -0.01em;
+            color: var(--text);
+            margin: 0;
+            text-align: left;
+        }
+
+        .contact-hero-title em {
+            font-style: italic;
+            color: var(--primary);
+        }
+
+        .contact-hero-line {
+            height: 1px;
+            background-color: var(--accent);
+            margin-top: 18px;
+            transform-origin: left center;
+            transform: scaleX(0);
+        }
+
+        .motion-up {
+            opacity: 0;
+            transform: translateY(18px);
+            transition: opacity 800ms ease-in-out, transform 800ms ease-in-out;
+        }
+
+        .motion-up.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .grow-line.in-view {
+            transform: scaleX(1);
+            transition: transform 800ms ease-in-out;
+        }
+
+        /* Generic scroll reveal animation (used by the page-wide JS below) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 700ms ease, transform 700ms ease;
+            will-change: opacity, transform;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Slideshow containers can break with generic `.reveal` opacity/transform. */
+        .hero-slideshow.reveal,
+        .services-showcase.reveal {
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        /* Stagger helper classes (JS may add these) */
+        .reveal-delay-1 {
+            transition-delay: 0ms;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 120ms;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 240ms;
+        }
+
+        .site-footer {
+            background-color: var(--surface-muted);
+            padding: 44px 16px 26px;
+            border-top: 1px solid var(--border);
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 26px;
+            align-items: start;
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.75;
+        }
+
+        .footer-brand {
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 10px;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            justify-self: end;
+        }
+
+        .footer-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .footer-item i {
+            margin-top: 3px;
+            color: var(--primary);
+            width: 18px;
+            text-align: center;
+            transition: transform 180ms ease;
+        }
+
+        .footer-item:hover i {
+            transform: scale(1.05);
+        }
+
+        .footer-item strong {
+            display: block;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 2px;
+        }
+
+        .footer-copy {
+            text-align: center;
+            margin-top: 34px;
+            font-size: 0.9rem;
+            color: var(--muted);
+            border-top: 1px solid var(--border);
+            padding-top: 18px;
+        }
+
+        @media (max-width: 900px) {
+            .contact-hero-inner {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 18px;
+            }
+
+            .contact-hero-line {
+                margin-top: 8px;
+            }
+
+            .footer-contact {
+                justify-self: start;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .contact-hero {
+                padding: 40px 16px 28px;
+            }
+
+            .contact-hero-title {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+            gap: 44px;
+            align-items: start;
+        }
+
+        .contact-copy {
+            color: var(--muted);
+            font-size: 0.98rem;
+            line-height: 1.7;
+            max-width: 420px;
+        }
+
+        .contact-copy strong {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .contact-underline {
+            width: 80px;
+            height: 2px;
+            background-color: var(--accent);
+            margin: 18px 0 22px;
+        }
+
+        .contact-form {
+            margin-top: 26px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 18px 18px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        .field label {
+            font-size: 0.75rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--text);
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            padding: 10px 12px;
+            border-radius: 0;
+            outline: none;
+            font-size: 0.95rem;
+            color: var(--text);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+        }
+
+        .field textarea {
+            min-height: 88px;
+            resize: vertical;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(var(--sapphire-rgb), 0.18);
+            background: var(--surface);
+        }
+
+        .contact-actions {
+            margin-top: 22px;
+        }
+
+        .contact-submit {
+            appearance: none;
+            border: none;
+            cursor: pointer;
+            background-color: var(--primary);
+            color: #ffffff;
+            padding: 12px 34px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            border-radius: 4px;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+            box-shadow: 0 10px 22px rgba(var(--sapphire-rgb), 0.22);
+        }
+
+        .contact-submit:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 26px rgba(var(--sapphire-rgb), 0.28);
+        }
+
+        .contact-submit:disabled {
+            opacity: 0.65;
+            cursor: wait;
+            transform: none;
+        }
+
+        .contact-honey {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .contact-form-status {
+            margin-top: 14px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .contact-form-status.is-success {
+            color: var(--primary);
+        }
+
+        .contact-form-status.is-error {
+            color: #b91c1c;
+        }
+
+        .map-frame {
+            width: 100%;
+            border: 0;
+            border-radius: 6px;
+            min-height: 420px;
+            box-shadow: 0 18px 40px rgba(var(--sapphire-rgb), 0.15);
+            overflow: hidden;
+        }
+
+        @media (max-width: 900px) {
+            .contact-grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 30px;
+            }
+
+            .contact-copy {
+                max-width: none;
+            }
+
+            .map-frame {
+                min-height: 340px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .contact-section {
+                padding: 54px 16px 64px;
+            }
+
+            .contact-title {
+                font-size: 1.9rem;
+                margin-bottom: 32px;
+            }
+
+            .form-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        /* Video + text section (before Portfolio Gallery) */
+        .portfolio-video-text-section {
+            background-color: var(--surface-muted);
+            padding: 56px 16px 18px;
+        }
+
+        .portfolio-video-text-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .portfolio-video-card {
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000;
+            box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .portfolio-video {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .portfolio-video-copy {
+            padding: 14px 18px;
+            background-color: var(--sand);
+            color: var(--text);
+            font-family: var(--font-heading);
+            font-size: 1.02rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 640px) {
+            .portfolio-video-text-section {
+                padding: 46px 14px 14px;
+            }
+
+            .portfolio-video {
+                height: 270px;
+            }
+
+            .portfolio-video-copy {
+                padding: 12px 14px;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Portfolio grid animations (from portfolio page) */
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.98) translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .photo-item {
+            animation: scaleIn 0.6s ease-out forwards;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+            border: 2px solid var(--border);
+            border-radius: 0.5rem;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .photo-item:hover .photo-overlay {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .photo-description {
+            color: #ffffff;
+            text-align: center;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 90%;
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .photo-item:hover .photo-description {
+            transform: scale(1);
+        }
+
+        .photo-item img {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero-slideshow {
+                /* Use dynamic/safe viewport units to avoid overlap on mobile browsers */
+                height: 100vh;
+                height: 100svh;
+                height: 100dvh;
+                max-height: none;
+                overflow: hidden;
+            }
+
+            .hero-slide {
+                position: absolute;
+                inset: 0;
+            }
+
+            .hero-overlay {
+                top: auto;
+                bottom: 15%;
+                right: 8%;
+                left: auto;
+                transform: none;
+                max-width: 70%;
+                min-width: 0;
+                padding: 24px 20px;
+                text-align: left;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            }
+
+            .hero-overlay h2 {
+                font-size: 1.2rem;
+                line-height: 1.4;
+            }
+
+            .hero-arrow {
+                width: 32px;
+                height: 32px;
+            }
+
+            .services-showcase {
+                padding: 40px 16px 50px;
+            }
+
+            .services-inner {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .services-media {
+                height: 260px;
+                min-height: 260px;
+            }
+
+            .services-slide img {
+                object-position: center;
+            }
+
+            .services-content {
+                flex: none;
+            }
+
+            .services-list li {
+                font-size: 0.8rem;
+                line-height: 1.5;
+            }
+
+            .services-description {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+
+            <!-- Menu bar -->
+            <nav class="navbar" aria-label="Primary">
+                <div class="logo-container">
+                    <a href="index.html" aria-label="Dignity Events home">
+                        <img src="images/logo.png" alt="Dignity Events Logo">
+                    </a>
+                </div>
+
+                <div class="navbar-section">
+                    <a class="nav-link" href="#about">About</a>
+                    <a class="nav-link" href="#services">Services</a>
+                    <a class="nav-link" href="#process">Process</a>
+                    <a class="nav-link" href="#owner">Owner</a>
+                    <a class="nav-link" href="#portfolio">Portfolio</a>
+                    <a class="nav-link" href="#contact">Contact</a>
+                </div>
+
+                <!-- Mobile: hamburger toggle -->
+                <button class="menu-toggle" type="button" aria-label="Toggle menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Mobile: slide-in menu -->
+                <div class="mobile-menu font-lato" aria-label="Mobile navigation">
+                    <button class="close-menu" type="button" aria-label="Close menu">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <a href="#about">About</a>
+                    <a href="#services">Services</a>
+                    <a href="#process">Process</a>
+                    <a href="#owner">Owner</a>
+                    <a href="#portfolio">Portfolio</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </nav>
+
+            <!-- About Section -->
+            <section id="about" class="hero-slideshow" aria-label="Featured events slideshow">
+                <div class="hero-slide active">
+                    <img src="images/upper/1st.jpeg" alt="Beautifully decorated event venue">
+                    <div class="hero-overlay">
+                        <h2>Crafting the Moments that matter!</h2>
+                        <p>Anil Dubey, Founder</p>
+                    </div>
+                </div>
+                <!-- Add more .hero-slide blocks here if you want multiple images -->
+                <div class="hero-slide">
+                    <img src="images/upper/2nd.jpeg" alt="Beautifully decorated event venue">
+                    <div class="hero-overlay">
+                        <h2>Crafting the Moments that matter!</h2>
+                        <p>Anil Dubey, Founder</p>
+                    </div>
+                </div>
+
+                <div class="hero-slide">
+                    <img src="images/upper/3rd.jpeg" alt="Beautifully decorated event venue">
+                    <div class="hero-overlay">
+                        <h2>Crafting the Moments that matter!</h2>
+                        <p>Anil Dubey, Founder</p>
+                    </div>
+                </div>
+
+                <div class="hero-slide">
+                    <img src="images/upper/4th.jpeg" alt="Beautifully decorated event venue">
+                    <div class="hero-overlay">
+                        <h2>Crafting the Moments that matter!</h2>
+                        <p>Anil Dubey, Founder</p>
+                    </div>
+                </div>
+                
+                <div class="hero-slide">
+                    <img src="images/upper/5th.jpeg" alt="Beautifully decorated event venue">
+                    <div class="hero-overlay">
+                        <h2>Crafting the Moments that matter!</h2>
+                        <p>Anil Dubey, Founder</p>
+                    </div>
+                </div>
+
+                <div class="hero-slide">
+                    <img src="images/upper/6th.jpeg" alt="Beautifully decorated event venue">
+                    <div class="hero-overlay">
+                        <h2>Crafting the Moments that matter!</h2>
+                        <p>Anil Dubey, Founder</p>
+                    </div>
+                </div>
+
+                <div class="hero-slide">
+                    <img src="images/upper/7th.jpeg" alt="Beautifully decorated event venue">
+                    <div class="hero-overlay">
+                        <h2>Crafting the Moments that matter!</h2>
+                        <p>Anil Dubey, Founder</p>
+                    </div>
+                </div>
+                
+                <div class="hero-slide">
+                    <img src="images/upper/8th.jpeg" alt="Beautifully decorated event venue">
+                    <div class="hero-overlay">
+                        <h2>Crafting the Moments that matter!</h2>
+                        <p>Anil Dubey, Founder</p>
+                    </div>
+                </div>
+
+                <button class="hero-arrow left" aria-label="Previous slide">&lsaquo;</button>
+                <button class="hero-arrow right" aria-label="Next slide">&rsaquo;</button>
+            </section>
+
+            <!-- Section Heading Between About & Services -->
+            <section class="about-services-heading-section">
+                <div class="about-services-heading-inner">
+                    <h2 class="about-services-heading-title">
+                        Crafted with Precision. Delivered with Distinction.
+                    </h2>
+                </div>
+            </section>
+
+            <!-- Services Slider Section -->
+            <section id="services" class="services-showcase">
+                <div class="services-inner">
+                    <div class="services-media">
+                        <div class="services-slide active" data-index="0">
+                            <img src="images/services slideshow/invites.jpeg" alt="Invites and return favours">
+                        </div>
+                        <div class="services-slide" data-index="1">
+                            <img src="images/services slideshow/rsvp.jpeg" alt="RSVP management">
+                        </div>
+                        <div class="services-slide" data-index="2">
+                            <img src="images/services slideshow/hospitality.jpeg" alt="Hospitality and logistics">
+                        </div>
+                        <div class="services-slide" data-index="3">
+                            <img src="images/services slideshow/designanddecoratives.jpeg" alt="Design and decor">
+                        </div>
+                        <div class="services-slide" data-index="4">
+                            <img src="images/services slideshow/entertainment.jpeg" alt="Entertainment">
+                        </div>
+                        <div class="services-slide" data-index="5">
+                            <img src="images/services slideshow/Vendor management.jpeg" alt="Vendor management">
+                        </div>
+                        <div class="services-slide" data-index="6">
+                            <img src="images/services slideshow/clientservicing.jpeg" alt="Client servicing">
+                        </div>
+                        <div class="services-slide" data-index="7">
+                            <img src="images/services slideshow/foodandberverages.jpeg" alt="Food and beverage">
+                        </div>
+
+                        <button class="services-arrow left" aria-label="Previous service slide">&lsaquo;</button>
+                        <button class="services-arrow right" aria-label="Next service slide">&rsaquo;</button>
+                    </div>
+
+                    <div class="services-content">
+                        <ul class="services-list font-montserrat">
+                            <li class="active" data-index="0">Invites &amp; Return Favours</li>
+                            <li data-index="1">RSVP Management</li>
+                            <li data-index="2">Hospitality &amp; Logistics</li>
+                            <li data-index="3">Design &amp; Décor</li>
+                            <li data-index="4">Entertainment</li>
+                            <li data-index="5">Vendor Management</li>
+                            <li data-index="6">Client Servicing</li>
+                            <li data-index="7">Food &amp; Beverage</li>
+                        </ul>
+                        <div class="services-divider"></div>
+                        <p class="services-description" id="servicesDescription">
+                            Born out of pure passion, Dignity Events is an end-to-end event management partner. From the first
+                            invite to the final farewell, our team ensures every touchpoint is thoughtful, on time, and
+                            seamlessly managed.
+                        </p>
+                    </div>
+                </div>
+            </section>
+            <style>
+                /* Responsive Slideshow Styles */
+                .slideshow-wrapper {
+          position: relative;
+          width: 100%;
+          min-height: 160px; /* ensures enough height for images */
+          overflow: hidden;
+          margin-bottom: 2rem;
+        }
+        
+        
+        .slideshow-container {
+          display: flex;
+          gap: 0.75rem;
+          position: absolute;
+          width: max-content;
+        }
+        
+        .direction-ltr {
+          animation: slideLTR 60s linear infinite;
+          left: 0;
+        }
+        
+        .direction-rtl {
+          animation: slideRTL 60s linear infinite;
+          right: 0;
+        }
+        
+        @keyframes slideLTR {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        
+        @keyframes slideRTL {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(50%); }
+        }
+        
+        .slideshow-container img {
+          width: 100%;
+          max-width: 220px;
+          max-height: 160px;
+          height: auto;
+          object-fit: cover;
+          border-radius: 8px;
+          transition: transform 0.3s ease;
+        }
+        
+        @media (min-width: 640px) {
+          .slideshow-container img {
+            max-width: 240px;
+            max-height: 200px;
+          }
+        }
+        
+        .slideshow-container img:hover {
+          transform: scale(1.05);
+        }
+        </style>
+                
+        <!-- Slideshow Section -->
+        <section class="py-16 overflow-hidden bg-white">
+            <!-- First Row - Left to Right -->
+            <div class="slideshow-wrapper mb-8">
+              <div class="slideshow-container direction-ltr">
+                <img src="images/slideshow1/slide1.jpeg" alt="Slideshow 1" />
+                <img src="images/slideshow1/slide2.jpeg" alt="Slideshow 1" />
+                <img src="images/slideshow1/slide3.jpeg" alt="Slideshow 1" />
+                <img src="images/slideshow1/slide4.jpeg" alt="Slideshow 1" />
+                <img src="images/slideshow1/slide5.jpeg" alt="Slideshow 1" />
+                <!-- Duplicate for seamless loop -->
+                <img src="images/slideshow1/slide1.jpeg" alt="Slideshow 1" />
+                <img src="images/slideshow1/slide2.jpeg" alt="Slideshow 1" />
+                <img src="images/slideshow1/slide3.jpeg" alt="Slideshow 1" />
+                <img src="images/slideshow1/slide4.jpeg" alt="Slideshow 1" />
+                <img src="images/slideshow1/slide5.jpeg" alt="Slideshow 1" />
+              </div>
+            </div>
+          
+            <!-- Second Row - Right to Left -->
+            <div class="slideshow-wrapper mb-8">
+              <div class="slideshow-container direction-rtl">
+                <img src="images/slideshow2/slide1.jpeg" alt="Slideshow 2" />
+                <img src="images/slideshow2/slide2.jpeg" alt="Slideshow 2" />
+                <img src="images/slideshow2/slide3.jpeg" alt="Slideshow 2" />
+                <img src="images/slideshow2/slide4.jpeg" alt="Slideshow 2" />
+                <img src="images/slideshow2/slide5.jpeg" alt="Slideshow 2" />
+                <!-- Duplicate for seamless loop -->
+                <img src="images/slideshow2/slide1.jpeg" alt="Slideshow 2" />
+                <img src="images/slideshow2/slide2.jpeg" alt="Slideshow 2" />
+                <img src="images/slideshow2/slide3.jpeg" alt="Slideshow 2" />
+                <img src="images/slideshow2/slide4.jpeg" alt="Slideshow 2" />
+                <img src="images/slideshow2/slide5.jpeg" alt="Slideshow 2" />
+              </div>
+            </div>
+          
+            <!-- Third Row - Left to Right -->
+            <div class="slideshow-wrapper">
+              <div class="slideshow-container direction-ltr">
+                <img src="images/slideshow3/slide1.jpeg" alt="Slideshow 3" />
+                <img src="images/slideshow3/slide2.jpeg" alt="Slideshow 3" />
+                <img src="images/slideshow3/slide3.jpeg" alt="Slideshow 3" />
+                <img src="images/slideshow3/slide4.jpeg" alt="Slideshow 3" />
+                <img src="images/slideshow3/slide5.jpeg" alt="Slideshow 3" />
+                <!-- Duplicate for seamless loop -->
+                <img src="images/slideshow3/slide1.jpeg" alt="Slideshow 3" />
+                <img src="images/slideshow3/slide2.jpeg" alt="Slideshow 3" />
+                <img src="images/slideshow3/slide3.jpeg" alt="Slideshow 3" />
+                <img src="images/slideshow3/slide4.jpeg" alt="Slideshow 3" />
+                <img src="images/slideshow3/slide5.jpeg" alt="Slideshow 3" />
+              </div>
+            </div>
+          </section>
+         
+            <!-- Video Background Section -->
+            <section class="video-bg-section" aria-label="Corporate and social events video background">
+                <video
+                    class="video-bg"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                    poster="https://i.pinimg.com/1200x/f4/59/ff/f459ffb1d9e1a64b7d928ee51f1ede05.jpg"
+                >
+                    <source src="assets/video/hero-bg.mp4" type="video/mp4" />
+                </video>
+
+                <div class="video-bg-overlay"></div>
+
+                <div class="video-bg-inner">
+                    <h2 class="video-bg-title">
+                        we specialise in all<br>
+                        corporate and social events
+                    </h2>
+                    <p class="video-bg-count">5000+ clients served</p>
+                    <div class="video-bg-categories">
+                        WEDDINGS | CONCERTS | CORPORATE EVENTS | CONFERENCES<br>
+                        MILESTONE EVENTS | INAUGURATIONS | BRAND LAUNCHES
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feature Cards Section -->
+            <section class="feature-grid-section">
+                <div class="feature-grid-container">
+                    <h2 class="feature-grid-heading">Why hosts love working with us</h2>
+                    <p class="feature-grid-subtitle">
+                        Thoughtful planning, clear communication, and calm execution for every celebration.
+                    </p>
+                    <div class="feature-grid">
+                        <article class="feature-card">
+                            <h3 class="feature-card-title">End-to-end coordination</h3>
+                            <p class="feature-card-text">
+                                From the first call to the final guest farewell, one core team tracks every detail so you
+                                never have to repeat yourself.
+                            </p>
+                        </article>
+                        <article class="feature-card">
+                            <h3 class="feature-card-title">Design with intention</h3>
+                            <p class="feature-card-text">
+                                Concepts, layouts, and décor are built around your story, not trends alone, so the event
+                                feels personal and timeless.
+                            </p>
+                        </article>
+                        <article class="feature-card">
+                            <h3 class="feature-card-title">Reliable vendor ecosystem</h3>
+                            <p class="feature-card-text">
+                                Trusted partners for light, sound, catering, and production help us respond fast and keep
+                                your event running on schedule.
+                            </p>
+                        </article>
+                        <article class="feature-card">
+                            <h3 class="feature-card-title">Guest-first experience</h3>
+                            <p class="feature-card-text">
+                                Logistics, signage, and hosting are planned to make it easy for guests to arrive, enjoy,
+                                and remember your event fondly.
+                            </p>
+                        </article>
+                        <article class="feature-card">
+                            <h3 class="feature-card-title">Transparent planning</h3>
+                            <p class="feature-card-text">
+                                Clear timelines, checklists, and budget tracking keep you in control without needing to
+                                manage everything yourself.
+                            </p>
+                        </article>
+                        <article class="feature-card">
+                            <h3 class="feature-card-title">Calm on event day</h3>
+                            <p class="feature-card-text">
+                                Our team quietly handles last-minute changes so you can be fully present with your family,
+                                team, and guests.
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Process Navigation + Steps -->
+            <section id="process" class="process-nav-section">
+                <div class="process-nav-container">
+                    <div class="process-nav-intro">
+                        <h2>Interested to know how it all works?</h2>
+                        <p>Click on a step to jump straight to that part of our planning process.</p>
+                    </div>
+                    <div class="process-nav-grid">
+                        <button class="process-card active" type="button" data-process-target="step-client-onboarding">
+                            Client onboarding
+                        </button>
+                        <button class="process-card" type="button" data-process-target="step-proposals">
+                            Proposals &amp; Brainstorming
+                        </button>
+                        <button class="process-card" type="button" data-process-target="step-defining-details">
+                            Defining the details
+                        </button>
+                        <button class="process-card" type="button" data-process-target="step-curating-masterpiece">
+                            Curating your masterpiece
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="process-steps-section">
+                <div class="process-steps-container">
+                    <article id="step-client-onboarding" class="process-step">
+                        <div class="process-step-content">
+                            <h3>NO. 1</h3>
+                            <h2>CLIENT ONBOARDING</h2>
+                            <div class="underline"></div>
+                            <p>
+                                Our client onboarding process begins with a commitment to building strong and long-lasting relationships founded on trust, transparent communication, and a thorough understanding of each client’s unique needs, expectations, and goals.                            </p>
+                        </div>
+                        <div class="process-step-media">
+                            <img src="images/works/clientonboarding.jpeg" alt="Client onboarding discussion">
+                        </div>
+                    </article>
+
+                    <article id="step-proposals" class="process-step">
+                        <div class="process-step-media">
+                            <img src="images/works/PROPOSALS&BRAINSTORMING.jpeg" alt="Team brainstorming session">
+                        </div>
+                        <div class="process-step-content">
+                            <h3>NO. 2</h3>
+                            <h2>PROPOSALS &amp; BRAINSTORMING</h2>
+                            <div class="underline"></div>
+                            <p>
+                                Next, we engage in a collaborative creative brainstorming process aimed at generating diverse and innovative ideas. These concepts are then carefully refined and shortlisted through detailed research, market analysis, and audience insights to ensure the most effective and impactful outcome.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article id="step-defining-details" class="process-step">
+                        <div class="process-step-content">
+                            <h3>NO. 3</h3>
+                            <h2>DEFINING THE DETAILS</h2>
+                            <div class="underline"></div>
+                            <p>
+                                Once the concepts are finalized, we move into detailed planning and execution. We consider this stage essential for delivering consistent, efficient, and accurate results. By strategically structuring and refining every step of the process, we ensure smooth coordination, minimize inefficiencies, and maintain the highest standards of quality throughout the project.</p>
+                        </div>
+                        <div class="process-step-media">
+                            <img src="images/works/DEFININGTHEDETAILS.jpeg" alt="Event decor details">
+                        </div>
+                    </article>
+
+                    <article id="step-curating-masterpiece" class="process-step">
+                        <div class="process-step-media">
+                            <img src="images/works/CURATINGYOURMASTERPIECE.jpeg" alt="Finished event experience">
+                        </div>
+                        <div class="process-step-content">
+                            <h3>NO. 4</h3>
+                            <h2>CURATING YOUR MASTERPIECE</h2>
+                            <div class="underline"></div>
+                            <p>Finally, through thoughtful curation and seamless presentation, we strive to create experiences that inspire, engage, and leave a lasting impression. Our goal is to craft impactful events that resonate with audiences and create meaningful memories long after the event concludes.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+           
+ <!-- Portfolio Gallery Section -->
+<section id="portfolio" class="pt-10 pb-10 px-6 md:px-12 theme-bg overflow-hidden">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="reveal text-3xl md:text-4xl font-bold mb-4 theme-accent-text text-center">Our Work</h2>
+      <div class="reveal w-24 h-1 theme-accent-line mx-auto mb-12"></div>
+  
+      <!-- Responsive Photo Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" style="opacity: 1; transform: translateY(0);" data-animate="true">
+        
+        <!-- Wedding Events -->
+        <div class="photo-item reveal">
+          <img src="images/portfolio/luxury.jpg" alt="Luxury Wedding" class="w-full h-64 object-cover rounded-lg">
+          <div class="photo-overlay rounded-lg">
+            <p class="photo-description">Elegant luxury wedding with crystal chandeliers and floral decor</p>
+          </div>
+        </div>
+        <div class="photo-item reveal">
+          <img src="images/portfolio/dance.jpeg" alt="Traditional Wedding" class="w-full h-64 object-cover rounded-lg">
+          <div class="photo-overlay rounded-lg">
+            <p class="photo-description">Traditional Indian wedding with vibrant mandap and decorations</p>
+          </div>
+        </div>
+        <div class="photo-item reveal">
+          <img src="images/portfolio/destination%20Wedding.jpeg" alt="Destination Wedding" class="w-full h-64 object-cover rounded-lg">
+          <div class="photo-overlay rounded-lg">
+            <p class="photo-description">Beachside destination wedding with natural elegance</p>
+          </div>
+        </div>
+  
+        <!-- Corporate Events -->
+        <div class="photo-item reveal">
+          <img src="images/portfolio/corporate.jpeg" alt="Corporate Conference" class="w-full h-64 object-cover rounded-lg">
+          <div class="photo-overlay rounded-lg">
+            <p class="photo-description">High-tech corporate conference with immersive presentations</p>
+          </div>
+        </div>
+        <div class="photo-item reveal">
+          <img src="images/portfolio/product%20launch.jpeg" alt="Product Launch" class="w-full h-64 object-cover rounded-lg">
+          <div class="photo-overlay rounded-lg">
+            <p class="photo-description">Interactive product launch with cutting-edge displays</p>
+          </div>
+        </div>
+        <div class="photo-item reveal">
+          <img src="images/portfolio/award%20ceremony.jpeg" alt="Award Ceremony" class="w-full h-64 object-cover rounded-lg">
+          <div class="photo-overlay rounded-lg">
+            <p class="photo-description">Prestigious award ceremony with sophisticated staging</p>
+          </div>
+        </div>
+  
+        <!-- Social Events -->
+        <div class="photo-item reveal">
+          <img src="images/portfolio/birthday%20party.jpeg" alt="Birthday Party" class="w-full h-64 object-cover rounded-lg">
+          <div class="photo-overlay rounded-lg">
+            <p class="photo-description">Themed birthday celebration with custom entertainment</p>
+          </div>
+        </div>
+        <div class="photo-item reveal">
+          <img src="images/portfolio/concert.jpeg" alt="Anniversary" class="w-full h-64 object-cover rounded-lg">
+          <div class="photo-overlay rounded-lg">
+            <p class="photo-description">Romantic anniversary dinner with intimate ambiance</p>
+          </div>
+        </div>
+        <div class="photo-item reveal">
+          <img src="images/portfolio/mehendi%20ceremony.jpeg" alt="Engagement" class="w-full h-64 object-cover rounded-lg">
+          <div class="photo-overlay rounded-lg">
+            <p class="photo-description">Elegant engagement ceremony with personalized touches</p>
+          </div>
+        </div>
+  
+      </div>
+    </div>
+  </section>
+
+            <!-- Meet the team Section -->
+            <section id="owner" class="team-section">
+                <div class="team-inner">
+                    <div class="team-copy">
+                        <h2>Meet the Owner.</h2>
+                        <div class="team-underline"></div>
+                        <p>
+                            We are a passionate team of creatives brought together by a shared love for crafting meaningful celebrations. At Dignity Events, we believe the most memorable experiences are built through thoughtful collaboration, attention to detail, and genuine human connection.
+
+                        </p>
+                    </div>
+                    <div class="team-profile">
+                        <div class="team-photo">
+                            <img src="images/owner.jpeg" alt="Founder portrait">
+                        </div>
+                        <div class="team-bio">
+                            <p>
+                                A creative visionary at heart, our founder leads Dignity Events with both passion and presence. Known for blending thoughtful planning with emotional understanding, they ensure every celebration feels deeply personal and beautifully executed.
+                            </p>
+                            <p>
+                                Leading by example, they remain actively involved in every stage from planning and coordination to on-ground execution. Their calm approach, dedication, and eye for detail shape the way our team delivers unforgettable experiences for every client.
+                            </p>
+                            <strong>ANIL DUBEY</strong>
+                            <span>founder</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Featured Corporate Clients Section -->
+            <section class="clients-section">
+                <div class="clients-inner">
+                    <h2 class="clients-title">Featured Corporate Clients</h2>
+                    <div class="clients-grid">
+                        <div class="client-logo-card">
+                            <img src="https://www.jumbokids.com/wp-content/uploads/2015/02/Jumbo-Logo.png" alt="Air India">
+                        </div>
+                        <div class="client-logo-card">
+                            <img src="https://imasindia.in/wp-content/uploads/2023/11/cropped-imas.png" alt="Edelweiss">
+                        </div>
+                        <div class="client-logo-card">
+                            <img src="https://www.tvsmotor.com/-/media/Feature/Header/TVSLogo-hr.svg" alt="EisnerAmper">
+                        </div>
+                        <div class="client-logo-card">
+                            <img src="data:image/jpeg;base64,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" alt="Dream11">
+                        </div>
+                        <div class="client-logo-card">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/2/28/HDFC_Bank_Logo.svg" alt="HDFC Bank">
+                        </div>
+                        <div class="client-logo-card">
+                            <img src="https://static.squareyards.com/resources/images/developerlogo/sunteck-603-8517.jpg" alt="Here Technologies">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="section-shell py-10 sm:py-16 md:py-20 px-4 sm:px-6">
+                <h2 class="text-center font-montserrat font-bold text-2xl sm:text-4xl md:text-5xl mb-10 sm:mb-16 text-black">SUCCESSFULLY COMPLETED 7000+ PROJECTS</h2>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 text-center max-w-7xl mx-auto px-4">
+                    <div class="reveal">
+                        <div class="stat-number">
+                            <span class="number-counter text-3xl sm:text-4xl md:text-5xl" data-target="50">0</span>
+                            <span class="plus text-xl sm:text-2xl md:text-3xl">+</span>
+                        </div>
+                        <span class="stat-label text-base sm:text-lg md:text-xl">WEDDING CLIENTS</span>
+                    </div>
+                    <div class="reveal">
+                        <div class="stat-number">
+                            <span class="number-counter text-3xl sm:text-4xl md:text-5xl" data-target="5000">0</span>
+                            <span class="plus text-xl sm:text-2xl md:text-3xl">+</span>
+                        </div>
+                        <span class="stat-label text-base sm:text-lg md:text-xl">EVENTS</span>
+                    </div>
+                    <div class="reveal">
+                        <div class="stat-number">
+                            <span class="number-counter text-3xl sm:text-4xl md:text-5xl" data-target="100">0</span>
+                            <span class="plus text-xl sm:text-2xl md:text-3xl">+</span>
+                        </div>
+                        <span class="stat-label text-base sm:text-lg md:text-xl">CORPORATE</span>
+                    </div>
+                    <div class="reveal">
+                        <div class="stat-number">
+                            <span class="number-counter text-3xl sm:text-4xl md:text-5xl" data-target="50">0</span>
+                            <span class="plus text-xl sm:text-2xl md:text-3xl">+</span>
+                        </div>
+                        <span class="stat-label text-base sm:text-lg md:text-xl">ACTIVATIONS</span>
+                    </div>
+                </div>
+            </section>
+        
+            <style>
+            .stat-number {
+                font-weight: 700;
+                line-height: 1;
+                margin-bottom: 1rem;
+                color: #000000;
+                display: flex;
+                justify-content: center;
+                align-items: baseline;
+            }
+        
+            .plus {
+                margin-left: 0.25rem;
+                color: #000000;
+            }
+        
+            .stat-label {
+                font-weight: 500;
+                color: #000000;
+                letter-spacing: 2px;
+                display: block;
+            }
+            </style>
+        
+            <!-- Contact + Map Section -->
+            <section id="contact" class="contact-section">
+                <div class="contact-inner">
+                    <h2 class="contact-title">Let’s do something awesome together</h2>
+                    <div class="contact-grid">
+                        <div>
+                            <p class="contact-copy">
+                                Whether you’re curious to learn about our process, our services, or are looking for a consult — we’re here to answer all and any questions!
+                                By reaching out, you agree to our <strong>Terms &amp; Conditions</strong> and <strong>Privacy Policy</strong>.
+                            </p>
+                            <div class="contact-underline"></div>
+
+                            <!-- Get a free key at https://web3forms.com/ (use dignityeventmanagement18@gmail.com), then paste below -->
+                            <form
+                                class="contact-form"
+                                id="contactForm"
+                                action="https://api.web3forms.com/submit"
+                                method="POST"
+                            >
+                                <input type="hidden" name="access_key" id="web3formsAccessKey" value="db337e7b-83b5-420d-86ef-3121f6af7cde" />
+                                <input type="hidden" name="subject" value="New enquiry — Dignity Events website" />
+                                <input type="hidden" name="from_name" value="Dignity Events Website" />
+                                <input type="checkbox" name="botcheck" class="contact-honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+                                <div class="form-grid">
+                                    <div class="field full">
+                                        <label for="contactName">Name</label>
+                                        <input id="contactName" name="name" type="text" placeholder="Your name.." autocomplete="name" required />
+                                    </div>
+
+                                    <div class="field">
+                                        <label for="contactMobile">Mobile number</label>
+                                        <input id="contactMobile" name="mobile" type="tel" placeholder="Your number.." autocomplete="tel" required />
+                                    </div>
+
+                                    <div class="field">
+                                        <label for="contactTimeline">Timeline</label>
+                                        <input id="contactTimeline" name="timeline" type="text" placeholder="Your timeline.." />
+                                    </div>
+
+                                    <div class="field">
+                                        <label for="contactEmail">Email</label>
+                                        <input id="contactEmail" name="email" type="email" placeholder="Your email.." autocomplete="email" required />
+                                    </div>
+
+                                    <div class="field">
+                                        <label for="contactEventType">Event type</label>
+                                        <select id="contactEventType" name="eventType">
+                                            <option value="wedding" selected>Wedding</option>
+                                            <option value="corporate">Corporate</option>
+                                            <option value="social">Social</option>
+                                            <option value="other">Other</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="field full">
+                                        <label for="contactMessage">Message</label>
+                                        <textarea id="contactMessage" name="message" placeholder="Write something.."></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="contact-actions">
+                                    <button class="contact-submit" type="submit">Submit</button>
+                                </div>
+                                <p id="contactFormStatus" class="contact-form-status" role="status" aria-live="polite" hidden></p>
+                            </form>
+                        </div>
+
+                        <div>
+                            <iframe
+                                class="map-frame"
+                                title="Dignity Events location"
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.0750427702073!2d72.86643947418952!3d19.27910254556713!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b1a80a55001f%3A0x20de23fbfb48f177!2sDignity%20Event%20Management!5e0!3m2!1sen!2sin!4v1776930536467!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 1: HERO TEXT (cover-style) -->
+            <section class="contact-hero">
+                <div class="contact-hero-inner">
+                    <h2 class="contact-hero-title motion-up" data-delay="0">
+                        Let’s turn your <em>dreams</em> into a reality.<br>
+                        Contact us.
+                    </h2>
+                    <div class="contact-hero-line grow-line" data-delay="80"></div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: FOOTER -->
+            <footer class="site-footer">
+                <div class="footer-inner">
+                    <div class="footer-grid">
+                        <div class="motion-up" data-delay="0">
+                            <div class="footer-brand">Dignity Event Management</div>
+                            <div>Shop no. 6, D wing</div>
+                            <div>Gokul village,</div>
+                            <div>Mira Road East,</div>
+                            <div>Mira Bhayandar,</div>
+                            <div>Maharashtra 401107</div>
+                        </div>
+
+                        <div class="footer-contact motion-up" data-delay="120">
+                            <div class="footer-item">
+                                <i class="fas fa-phone"></i>
+                                <div>
+                                    <strong>Phone:</strong>
+                                    +91 90825 57453                                </div>
+                            </div>
+                            <div class="footer-item">
+                                <i class="fas fa-envelope"></i>
+                                <div>
+                                    <strong>Email:</strong>
+                                    dignityeventmanagement18@gmail.com
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-copy">Copyright © 2026 Allegiantevents.com. All Rights Reserved.</div>
+                </div>
+            </footer>
+
+            <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+            // Navigation scroll behavior
+            const nav = document.querySelector('nav');
+            let lastScrollY = window.scrollY;
+            
+            window.addEventListener('scroll', () => {
+                const currentScrollY = window.scrollY;
+                
+                // Show nav when scrolling up or at top, hide when scrolling down
+                if (currentScrollY > lastScrollY && currentScrollY > 100) {
+                    nav.style.transform = 'translateY(-100%)';
+                } else {
+                    nav.style.transform = 'translateY(0)';
+                }
+                
+                lastScrollY = currentScrollY;
+            });
+
+            // Mobile menu toggle (hamburger)
+            const menuToggle = document.querySelector('.menu-toggle');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const closeMenu = document.querySelector('.close-menu');
+            if (menuToggle && mobileMenu) {
+                const toggleMenu = () => {
+                    mobileMenu.classList.toggle('active');
+                    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+                        if (nav) nav.classList.toggle('menu-open', mobileMenu.classList.contains('active'));
+                };
+
+                menuToggle.addEventListener('click', toggleMenu);
+                if (closeMenu) closeMenu.addEventListener('click', toggleMenu);
+
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        mobileMenu.classList.remove('active');
+                        document.body.style.overflow = '';
+                            if (nav) nav.classList.remove('menu-open');
+                    });
+                });
+            }
+    
+            // Reveal Animation
+            function reveal() {
+                const reveals = document.querySelectorAll('.reveal');
+                reveals.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementVisible = 150;
+                    if (elementTop < window.innerHeight - elementVisible) {
+                        element.classList.add('active');
+                    }
+                });
+            }
+
+            // Page-wide scroll reveal setup
+            // Adds `.reveal` to most visible content blocks so the whole page animates on scroll.
+            (function initPageReveal() {
+                const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                if (prefersReducedMotion) return;
+
+                const candidates = document.querySelectorAll(
+                    'section, .process-card, .process-step-media, .team-profile, .team-photo, .team-bio, .client-logo-card, .contact-title, .contact-copy, .contact-grid'
+                );
+
+                const delayClasses = ['reveal-delay-1', 'reveal-delay-2', 'reveal-delay-3'];
+                candidates.forEach((el, index) => {
+                    // Don't animate form controls individually; the containing section/header already animates.
+                    if (el.closest('form') && !el.classList.contains('contact-form')) return;
+                    // The hero slideshow uses absolute-positioned slides; auto-opacity can cause
+                    // mobile "hidden" states. Let the `.hero-slide.active` rule control visibility.
+                    if (el.classList && el.classList.contains('hero-slideshow')) return;
+                    // The services slider also relies on internal opacity toggles.
+                    // Auto-reveal opacity can hide the active slide on mobile.
+                    if (el.classList && el.classList.contains('services-showcase')) return;
+                    el.classList.add('reveal');
+                    el.classList.add(delayClasses[index % delayClasses.length]);
+                });
+            })();
+
+            // Add animation classes to elements
+            document.querySelectorAll('.stat-circle').forEach(circle => {
+                circle.classList.add('float-animation');
+            });
+
+            document.querySelectorAll('.number-counter').forEach(counter => {
+                counter.parentElement.classList.add('pulse-animation');
+            });
+
+            // Add delay classes to team members
+            document.querySelectorAll('.grid > div').forEach((div, index) => {
+                div.classList.add(`reveal-delay-${(index % 3) + 1}`);
+            });
+
+            // Number Counter Animation
+            const counters = document.querySelectorAll('.number-counter');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60 FPS
+                let current = 0;
+    
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        counter.textContent = Math.floor(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.textContent = target;
+                    }
+                };
+    
+                const observer = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting) {
+                        updateCounter();
+                        observer.unobserve(counter);
+                    }
+                });
+    
+                observer.observe(counter);
+            });
+    
+            window.addEventListener('scroll', reveal);
+            reveal();
+
+            // Smooth in-view animations (hero text + footer)
+            const motionEls = document.querySelectorAll('.motion-up, .grow-line');
+            if (motionEls.length) {
+                const motionObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (!entry.isIntersecting) return;
+                        const delayAttr = entry.target.getAttribute('data-delay');
+                        const delayMs = delayAttr ? parseInt(delayAttr, 10) : 0;
+                        entry.target.style.transitionDelay = `${delayMs}ms`;
+                        entry.target.classList.add('in-view');
+                        observer.unobserve(entry.target);
+                    });
+                }, { threshold: 0.35 });
+
+                motionEls.forEach(el => motionObserver.observe(el));
+            }
+
+            const contactForm = document.getElementById('contactForm');
+            const contactFormStatus = document.getElementById('contactFormStatus');
+            const web3formsAccessKey = document.getElementById('web3formsAccessKey');
+
+            if (contactForm) {
+                const showFormStatus = (text, type) => {
+                    if (!contactFormStatus) return;
+                    contactFormStatus.hidden = false;
+                    contactFormStatus.textContent = text;
+                    contactFormStatus.className = 'contact-form-status' + (type ? ' is-' + type : '');
+                };
+
+                const getAccessKey = () => {
+                    const key = (web3formsAccessKey && web3formsAccessKey.value || '').trim();
+                    if (!key || key === 'YOUR_ACCESS_KEY_HERE') return '';
+                    return key;
+                };
+
+                if (!getAccessKey()) {
+                    showFormStatus(
+                        'Form setup needed: open web3forms.com, enter dignityeventmanagement18@gmail.com, copy your access key, and paste it in copy.html (search for web3formsAccessKey).',
+                        'error'
+                    );
+                }
+
+                contactForm.addEventListener('submit', async (e) => {
+                    e.preventDefault();
+
+                    const submitBtn = contactForm.querySelector('.contact-submit');
+                    if (contactFormStatus) {
+                        contactFormStatus.hidden = true;
+                        contactFormStatus.textContent = '';
+                        contactFormStatus.className = 'contact-form-status';
+                    }
+
+                    if (!getAccessKey()) {
+                        showFormStatus(
+                            'Add your Web3Forms access key first (free at web3forms.com → use dignityeventmanagement18@gmail.com).',
+                            'error'
+                        );
+                        return;
+                    }
+
+                    if (submitBtn) {
+                        submitBtn.disabled = true;
+                        submitBtn.textContent = 'Sending…';
+                    }
+
+                    try {
+                        const formData = new FormData(contactForm);
+                        const response = await fetch('https://api.web3forms.com/submit', {
+                            method: 'POST',
+                            body: formData,
+                            headers: { Accept: 'application/json' }
+                        });
+                        const data = await response.json().catch(() => ({}));
+
+                        if (!response.ok || !data.success) {
+                            throw new Error(data.message || 'Unable to send message');
+                        }
+
+                        const savedKey = getAccessKey();
+                        contactForm.reset();
+                        if (web3formsAccessKey) web3formsAccessKey.value = savedKey;
+                        showFormStatus('Thank you! Your message was sent. We’ll get back to you soon.', 'success');
+                    } catch (err) {
+                        const detail = err && err.message ? ' ' + err.message : '';
+                        showFormStatus(
+                            'Could not send your message.' + detail + ' You can also email dignityeventmanagement18@gmail.com directly.',
+                            'error'
+                        );
+                    } finally {
+                        if (submitBtn) {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = 'Submit';
+                        }
+                    }
+                });
+            }
+        });
+                // Hero slideshow logic
+                const slides = document.querySelectorAll('.hero-slide');
+                const prevBtn = document.querySelector('.hero-arrow.left');
+                const nextBtn = document.querySelector('.hero-arrow.right');
+                let currentSlide = 0;
+
+                function showSlide(index) {
+                    slides.forEach((slide, i) => {
+                        slide.classList.toggle('active', i === index);
+                    });
+                }
+
+                function nextSlide() {
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    showSlide(currentSlide);
+                }
+
+                function prevSlideFn() {
+                    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+                    showSlide(currentSlide);
+                }
+
+                if (slides.length > 1) {
+                    setInterval(nextSlide, 7000);
+                }
+
+                // Ensure only the first slide is visible on load
+                showSlide(currentSlide);
+
+                prevBtn.addEventListener('click', prevSlideFn);
+                nextBtn.addEventListener('click', nextSlide);
+
+                // Services slider logic
+                const serviceSlides = document.querySelectorAll('.services-slide');
+                const serviceItems = document.querySelectorAll('.services-list li');
+                const servicePrev = document.querySelector('.services-arrow.left');
+                const serviceNext = document.querySelector('.services-arrow.right');
+                const servicesDescription = document.getElementById('servicesDescription');
+
+                const serviceCopy = [
+                    'Thoughtfully designed invitations and return favours that introduce your celebration with style and leave guests with a lasting keepsake.',
+                    'End-to-end RSVP tracking so you always know who is coming, with seamless communication and updates to your guest list.',
+                    'From airport pickups to rooming lists, our team ensures your guests feel taken care of at every step of the journey.',
+                    'Concept-driven décor and stage design that transforms any venue into a reflection of your story and aesthetic.',
+                    'Curated artists, anchors, and performances that keep your event energetic, engaging, and unforgettable.',
+                    'Strong vendor partnerships and on-ground coordination that keep every moving part on schedule and on budget.',
+                    'Dedicated relationship managers who are always available to answer questions, share updates, and reassure you.',
+                    'Menu planning, tasting, and service coordination so every course is served fresh, on time, and beautifully presented.'
+                ];
+
+                let currentService = 0;
+
+                function showService(index) {
+                    currentService = index;
+                    serviceSlides.forEach((slide, i) => {
+                        slide.classList.toggle('active', i === index);
+                    });
+                    serviceItems.forEach((item, i) => {
+                        item.classList.toggle('active', i === index);
+                    });
+                    if (serviceCopy[index]) {
+                        servicesDescription.textContent = serviceCopy[index];
+                    }
+                }
+
+                function nextService() {
+                    const nextIndex = (currentService + 1) % serviceSlides.length;
+                    showService(nextIndex);
+                }
+
+                function prevService() {
+                    const prevIndex = (currentService - 1 + serviceSlides.length) % serviceSlides.length;
+                    showService(prevIndex);
+                }
+
+                serviceItems.forEach(item => {
+                    item.addEventListener('click', () => {
+                        const idx = parseInt(item.getAttribute('data-index'), 10);
+                        showService(idx);
+                    });
+                });
+
+                servicePrev.addEventListener('click', prevService);
+                serviceNext.addEventListener('click', nextService);
+
+                // Feature cards intersection animation
+                const featureCards = document.querySelectorAll('.feature-card');
+                const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                if (featureCards.length && !prefersReducedMotion) {
+                    const featureObserver = new IntersectionObserver((entries, observer) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                featureCards.forEach((card, index) => {
+                                    const delay = index * 120;
+                                    card.style.transitionDelay = `${delay}ms`;
+                                    card.classList.add('in-view');
+                                });
+                                observer.disconnect();
+                            }
+                        });
+                    }, { threshold: 0.25 });
+
+                    featureObserver.observe(featureCards[0].parentElement);
+                } else if (featureCards.length) {
+                    // Immediately show cards when motion is reduced
+                    featureCards.forEach(card => card.classList.add('in-view'));
+                }
+
+                // Process cards scroll behavior
+                const processCards = document.querySelectorAll('.process-card[data-process-target]');
+                const prefersReducedMotionScroll = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+                processCards.forEach(card => {
+                    card.addEventListener('click', () => {
+                        const targetId = card.getAttribute('data-process-target');
+                        const targetEl = document.getElementById(targetId);
+                        if (!targetEl) return;
+
+                        processCards.forEach(c => c.classList.remove('active'));
+                        card.classList.add('active');
+
+                        const behavior = prefersReducedMotionScroll ? 'auto' : 'smooth';
+                        const navbar = document.querySelector('.navbar');
+                        const navOffset = navbar ? navbar.getBoundingClientRect().height : 0;
+                        const extraOffset = 14; // keeps section title comfortably visible
+                        const targetTop = window.scrollY + targetEl.getBoundingClientRect().top - navOffset - extraOffset;
+
+                        window.scrollTo({ top: Math.max(0, targetTop), behavior });
+                    });
+                });
+            </script>
+   
+   
 </body>
 </html>
